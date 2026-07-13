@@ -1,5 +1,6 @@
 #pragma once
 #include <Arduino.h>
+#include "Config.h"
 #include "MuxController.h"
 
 // Full connectivity matrix: connections[i] is a 64-bit mask where bit j is
@@ -12,13 +13,9 @@ struct TestResult {
 class ContinuityTester {
 public:
     void begin(MuxController* mux);
-
-    // Drives each wire in turn and reads continuity against ALL 64 sense
-    // lines (not just the matching one) so shorts and mismatches are visible,
-    // not just opens. 64 x 64 = 4096 reads per full scan.
     TestResult runScan();
-
-    // Default "expected" matrix when no golden sample has been captured yet:
-    // assumes a straight-through harness (wire i should only reach pin i).
     static TestResult identityExpectation();
+
+private:
+    MuxController* _mux;
 };
