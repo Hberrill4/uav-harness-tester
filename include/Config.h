@@ -8,6 +8,12 @@ static const uint8_t  NUM_WIRES        = 64;   // total wires under test
 static const uint8_t  MUXES_PER_BANK   = 4;    // 4 muxes per bank
 static const uint8_t  CHANNELS_PER_MUX = 16;   // 74HC4067-style 16:1 mux
 
+// Two identical connectors, 32 pins each. Wire index 0-31 = connector A,
+// 32-63 = connector B. Update the names/count here if your harness changes.
+static const uint8_t  PINS_PER_CONNECTOR = 32;
+static const char*    CONNECTOR_A_NAME   = "J1";
+static const char*    CONNECTOR_B_NAME   = "J2";
+
 // ---------------------------------------------------------------------------
 // BUTTON
 // ---------------------------------------------------------------------------

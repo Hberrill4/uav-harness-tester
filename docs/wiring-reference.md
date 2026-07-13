@@ -19,17 +19,19 @@ first power-on:
 
 ## Wire numbering convention
 
-Wires are indexed **0-63 internally**, but displayed and logged
-**1-64** (matches how people usually label physical pins). If your harness
-has two separate connectors (e.g. J1 and J2, 32 pins each), wire index `n`
-maps to:
+Wires are indexed **0-63 internally**. The harness uses **two identical
+32-pin connectors** (`J1` and `J2`), so the firmware converts internal
+indices to physical locations automatically:
 
-- Connector J1, pin `(n % 32) + 1` if `n < 32`
-- Connector J2, pin `(n % 32) + 1` if `n >= 32`
+- Wire index `0-31` → connector **J1**, pin `(index % 32) + 1`
+- Wire index `32-63` → connector **J2**, pin `(index % 32) + 1`
 
-Adjust this mapping in `docs/wire-map.md` (create one for your specific
-harness) so fault reports like `SHORT W5<->W9` translate to real connector
-pins for whoever is doing the physical repair.
+This mapping lives in `src/WireMap.h` (`wireLabel()`), and both the LCD and
+the SD log use it — fault reports show real connector/pin labels like
+`J1-13` or `SHORT J1-5<->J2-9`, not abstract wire numbers. If your
+connector pin-out doesn't match a simple sequential 1-32 order (e.g. a
+circular connector with a non-sequential pin layout), update `wireLabel()`
+to do the correct index→pin translation for your specific part.
 
 ## Mux addressing
 

@@ -4,9 +4,9 @@
 
 | Type | Meaning | Example |
 |---|---|---|
-| `OPEN` | No continuity anywhere on this wire | `OPEN:12` — wire 12 is broken/disconnected |
-| `SHORT` | Wire reaches its correct pin, but also touches another pin it shouldn't | `SHORT:5-9` — wires 5 and 9 are shorted together |
-| `MISMATCH` | Wire reaches a pin, but not the one it's supposed to | `MISWIRE:20-33` — wire 20 landed on pin 33's position |
+| `OPEN` | No continuity anywhere on this wire | `OPEN:J1-12` — pin 12 on connector J1 is broken/disconnected |
+| `SHORT` | Wire reaches its correct pin, but also touches another pin it shouldn't | `SHORT:J1-5-J2-9` — J1 pin 5 and J2 pin 9 are shorted together |
+| `MISMATCH` | Wire reaches a pin, but not the one it's supposed to | `MISWIRE:J1-20-J2-1` — the wire meant for J1 pin 20 landed on J2 pin 1 instead |
 
 ## Where faults show up
 
@@ -18,7 +18,7 @@
 
   ```
   timestamp,result,faults
-  1737654321,FAIL,OPEN:12;SHORT:5-9;MISWIRE:20-33
+  1737654321,FAIL,OPEN:J1-12;SHORT:J1-5-J2-9;MISWIRE:J1-20-J2-1
   1737654890,PASS,
   ```
 

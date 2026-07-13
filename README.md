@@ -33,6 +33,7 @@ src/
   MuxController.*         Addresses any of the 64 wires across the drive/sense mux banks
   ContinuityTester.*      Runs the full 64x64 connectivity scan
   FaultAnalyzer.*         Classifies faults: OPEN / SHORT / MISMATCH, with location
+  WireMap.h               Converts wire index -> connector+pin label (e.g. "J1-13")
   DisplayManager.*        LCD + RGB status LED
   StorageManager.*        SD card logging + golden sample persistence
 docs/

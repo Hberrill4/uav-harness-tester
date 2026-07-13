@@ -1,5 +1,6 @@
 #include "StorageManager.h"
 #include "Config.h"
+#include "WireMap.h"
 #include <SD.h>
 #include <SPI.h>
 
@@ -18,14 +19,13 @@ bool StorageManager::begin() {
 }
 
 static String faultToken(const WireFault& f) {
-    // 1-indexed wire numbers in the log to match physical labeling
     switch (f.type) {
         case FaultType::OPEN:
-            return "OPEN:" + String(f.wireIndex + 1);
+            return "OPEN:" + wireLabel(f.wireIndex);
         case FaultType::SHORT:
-            return "SHORT:" + String(f.wireIndex + 1) + "-" + String(f.partnerWire + 1);
+            return "SHORT:" + wireLabel(f.wireIndex) + "-" + wireLabel(f.partnerWire);
         case FaultType::MISMATCH:
-            return "MISWIRE:" + String(f.wireIndex + 1) + "-" + String(f.partnerWire + 1);
+            return "MISWIRE:" + wireLabel(f.wireIndex) + "-" + wireLabel(f.partnerWire);
     }
     return "";
 }

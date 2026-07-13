@@ -1,5 +1,6 @@
 #include "DisplayManager.h"
 #include "Config.h"
+#include "WireMap.h"
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
@@ -60,14 +61,13 @@ void DisplayManager::showIdle(UIMode mode) {
 }
 
 String DisplayManager::faultLine(const WireFault& f) {
-    // Wire numbers shown 1-indexed to match physical pin labeling
     switch (f.type) {
         case FaultType::OPEN:
-            return "OPEN   W" + String(f.wireIndex + 1);
+            return "OPEN   " + wireLabel(f.wireIndex);
         case FaultType::SHORT:
-            return "SHORT  W" + String(f.wireIndex + 1) + "<->W" + String(f.partnerWire + 1);
+            return "SHORT  " + wireLabel(f.wireIndex) + "<->" + wireLabel(f.partnerWire);
         case FaultType::MISMATCH:
-            return "MISWIRE W" + String(f.wireIndex + 1) + "->W" + String(f.partnerWire + 1);
+            return "MISWIRE " + wireLabel(f.wireIndex) + "->" + wireLabel(f.partnerWire);
     }
     return "";
 }
