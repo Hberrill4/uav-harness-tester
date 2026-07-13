@@ -10,7 +10,7 @@ One button drives everything:
 
 - **Short press** — runs a test (normal mode) or captures a golden
   reference sample (admin mode)
-- **Hold 5 seconds** — toggles between normal and admin mode (LCD/LED turn
+- **Hold 5 seconds** — toggles between normal and admin mode (LCD turns
   blue in admin mode)
 
 Every test scans all 64 wires against all 64 sense channels (not just a
@@ -26,7 +26,7 @@ fault report looks like and how faults are classified.
 ```
 include/
   Config.h              All pin assignments, timing constants, wire count.
-                         The only file you should need to edit for hardware changes.
+                         File to edit hardware changes.
 src/
   main.cpp               Owns the state machine (normal/admin, test/capture)
   ButtonManager.*         Non-blocking debounce + short-press vs 5s-hold detection
@@ -34,7 +34,7 @@ src/
   ContinuityTester.*      Runs the full 64x64 connectivity scan
   FaultAnalyzer.*         Classifies faults: OPEN / SHORT / MISMATCH, with location
   WireMap.h               Converts wire index -> connector+pin label (e.g. "J1-13")
-  DisplayManager.*        LCD + RGB status LED
+  DisplayManager.*        LCD + RGB
   StorageManager.*        SD card logging + golden sample persistence
 docs/
   wiring-reference.md     Hardware assumptions baked into the code, pin mapping conventions
