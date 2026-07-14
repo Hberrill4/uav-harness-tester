@@ -27,6 +27,11 @@ Automated Test Equipment (ATE) for testing modular UAV wire harnesses — verifi
 ### Phase 6: Validation
 - [Testing & Validation](./testing-validation/README.md)
 
+## Project Files
+
+- [BOM for project.xlsx](./project-files/BOM%20for%20project.xlsx)
+- [Gant Chart.xlsx](./project-files/Gant%20Chart.xlsx)
+
 ## Quick Links
 
 - [Wiring Reference](./wiring-reference.md)
