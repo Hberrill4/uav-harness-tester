@@ -2,9 +2,9 @@
 
 ## Design Evolution
 
-**Initial idea:** Store multiple harness types on an SD card, load the relevant one into RAM, and compare it against the connected harness, navigated via a scroll-wheel menu (new harness / test / view results). Rejected — only one "golden sample" is needed at a time, and this added test time and complexity without being user friendly.
+**Initial idea:** Store multiple harness types on an SD card, load the relevant one into RAM, and compare it against the connected harness, navigated via a scroll-wheel menu (new harness / test / view results). Rejected — only one "golden sample" is needed at a time, and this added test time and complexity without being user friendly. It would also create admin problems and using the scroll wheel may cause issues.
 
-**Input method thinking:** The goal was a single button for most users, with a touch-screen password for admins to change the golden sample. Since a separate touch-input screen would undermine the simplicity goal, the team settled on using the same button for everything.
+**Input method thinking:** The goal was a single button for most users, with a touch-screen password for admins to change the golden sample. Since a separate touch-input screen would undermine the simplicity goal, the team settled on using the same button for everything. This touch screen would then be two seperate screen which woukd overcomplicate the process and cause the test box to be too bulky.
 
 ## Final Design
 
@@ -15,7 +15,8 @@ A single button provides all input.
 - **Status colors:** Pass = green, Fail = red, Admin = blue.
 
 This keeps the interface simple for everyday users while keeping the golden-sample update path deliberately non-obvious, and all results (with timestamps) are recoverable by plugging the SD card into a PC.
-
+## Harness/cable considerations
+A DSub mount connected to a ribbon cable which can connect to the Dsub connector on the outside of the box would keep everything contained and have a fixed position to conect to on the outisde of the box. Using Dsub wire connectors for our floating umbilical cords should also keep the connection stable and be resistant to general use. DIN connectors were also considered but problems with sturdiness and reliability of connection arose aswell as number of pins as the tester is designed to accomadate for a 64 wire loom.
 ## Component Architecture
 ![Component architecture diagram](../../images/entire%20components.png)
 
