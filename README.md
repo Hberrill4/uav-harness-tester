@@ -62,5 +62,5 @@ on real hardware**. Before first power-on:
 - [ ] Add a sanity check before saving a golden sample (reject an all-open capture)
 - [ ] Decide if the LCD needs fault paging for reports with more than 3 faults
       ## Project Files
-docs/BOM-for-project.xlsx
-docs/Gant-Chart.xlsx
+[docs/BOM-for-project.xlsx]
+[docs/Gant-Chart.xlsx]
