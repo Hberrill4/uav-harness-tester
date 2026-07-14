@@ -61,6 +61,7 @@ on real hardware**. Before first power-on:
 - [ ] Tune the `delayMicroseconds()` settle times in `ContinuityTester` against your actual mux part
 - [ ] Add a sanity check before saving a golden sample (reject an all-open capture)
 - [ ] Decide if the LCD needs fault paging for reports with more than 3 faults
+
       ## Project Files
 [docs/project-files/BOM-for-project.xlsx]
 [docs/project-files/Gant-Chart.xlsx]
