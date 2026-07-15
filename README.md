@@ -65,4 +65,4 @@ on real hardware**. Before first power-on:
 ## Project Files
 
 - [Bill of Materials](docs/project-files/BOM%20for%20project.xlsx)
-- [Gantt Chart](docs/project-files/Gant%20Chart.xlsx)
+- [Gant Chart](docs/project-files/Gant%20Chart.xlsx)
