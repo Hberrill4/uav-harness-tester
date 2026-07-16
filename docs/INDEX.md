@@ -39,4 +39,3 @@ Automated Test Equipment (ATE) for testing modular UAV wire harnesses — verifi
 
 ---
 
-**Weekly Plan:** Monday — finalize parts and order · Tuesday — look at code and structure · Wednesday — start coding · Thursday — research CAD and practice · Friday — test some prints.
