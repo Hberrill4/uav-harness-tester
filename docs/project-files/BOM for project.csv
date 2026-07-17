@@ -1,11 +1,11 @@
-Name,Description,Qty,unit cost (No VAT),delivery,cost,link,datasheet,.
+Name,Description,Qty,unit cost (No VAT)(£),delivery,cost(£),link,datasheet,.
 ESP32-S3-DEV-KIT-NXRX,32 bit Microcontroller,1,15.35,0,15.35,https://www.amazon.co.uk/Waveshare-Development-ESP32-S3-WROOM-1-Processor-Connector/dp/B0DLWGVXCS,https://docs.waveshare.com/ESP32-S3-DEV-KIT-N8R8,.
 Dsub coupler,Female to female  37 pins,8,2.11,,16.88,https://uk.rs-online.com/web/p/d-sub-connectors/1007822?cm_mmc=UK-PLA-DS3A-_-google-_-CSS_UK_EN_PMAX_DLG-_--_-1007822&matchtype=&&gclsrc=aw.ds&gad_source=1&gad_campaignid=23801851129&gbraid=0AAAAADkeWNPCdh1twLUVp5rq1XMCx1Iot&gclid=EAIaIQobChMI4Ni53MvRlQMVSZFQBh2ZoSglEAQYAiABEgISGvD_BwE,https://docs.rs-online.com/b35c/A700000014553755.pdf,.
 Dsub to dsub,37 Pin Dsub to Dsub males,4,8.66,,34.64,https://uk.rs-online.com/web/p/serial-cables/2834340,https://docs.rs-online.com/03de/A700000010982135.pdf,.
 Dsub connectors,37 Pin  Dsub conector,1x5,4.346,,21.73,https://uk.rs-online.com/web/p/d-sub-connectors/5443878,https://docs.rs-online.com/f677/A700000007669984.pdf,.
 Resistive Touch Screen Display Module,"2.8"" LCD using SPI ",1,23.13,0,23.13,https://uk.rs-online.com/web/p/display-development-tools/1245469,https://docs.rs-online.com/4ddc/0900766b81534372.pdf,.
 MicroSD Breakout,MicroSD Breakout,1,3.3,,3.3,https://thepihut.com/products/microsd-breakout,https://github.com/adafruit/MicroSD-breakout-board,.
-CD74HC4067�Module,16 bit de/multiplexer 1Pcs,8,2.99,0,23.92,https://38-3d.co.uk/products/cd74hc4067-analogue-digital-multiplexer-module,https://www.ti.com/lit/ds/symlink/cd74hc4067.pdf,.
+CD74HC4067ÿModule,16 bit de/multiplexer 1Pcs,8,2.99,0,23.92,https://38-3d.co.uk/products/cd74hc4067-analogue-digital-multiplexer-module,https://www.ti.com/lit/ds/symlink/cd74hc4067.pdf,.
 CD74HC4067M96,16 bit de/multiplexer 10Pcs,1,4.21,,4.21,https://uk.rs-online.com/web/p/multiplexer-demultiplexer-ics/6622577,https://www.ti.com/lit/ds/symlink/cd74hc4067.pdf,.
 Micro SD card,Micro SD card  8GB,3,9.24,0,27.72,https://uk.rs-online.com/web/p/sd-cards/2883799,https://docs.rs-online.com/0636/A700000011340737.pdf,.
 Breadboards,830 Points 3 Pcs,2,8.04,,16.08,https://amazon.co.uk/dp/B01M0QJTI5,,.
