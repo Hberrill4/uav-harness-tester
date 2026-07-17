@@ -1,4 +1,4 @@
-Name,Description,Qty,unit cost (No VAT)(£),delivery,cost(£),link,datasheet,.
+Name,Description,Qty,unit cost (No VAT)(£),delivery,cost(£),Product link,datasheet,.
 ESP32-S3-DEV-KIT-NXRX,32 bit Microcontroller,1,15.35,0,15.35,https://www.amazon.co.uk/Waveshare-Development-ESP32-S3-WROOM-1-Processor-Connector/dp/B0DLWGVXCS,https://docs.waveshare.com/ESP32-S3-DEV-KIT-N8R8,.
 Dsub coupler,F/F 37 pins,8,2.11,,16.88,https://uk.rs-online.com/web/p/d-sub-connectors/1007822?cm_mmc=UK-PLA-DS3A-_-google-_-CSS_UK_EN_PMAX_DLG-_--_-1007822&matchtype=&&gclsrc=aw.ds&gad_source=1&gad_campaignid=23801851129&gbraid=0AAAAADkeWNPCdh1twLUVp5rq1XMCx1Iot&gclid=EAIaIQobChMI4Ni53MvRlQMVSZFQBh2ZoSglEAQYAiABEgISGvD_BwE,https://docs.rs-online.com/b35c/A700000014553755.pdf,.
 Male D-Sub 37-Pin to Male D-Sub 37-Pin Serial Cable,37 Pin Dsub M/M,4,8.66,,34.64,https://uk.rs-online.com/web/p/serial-cables/2834340,https://docs.rs-online.com/03de/A700000010982135.pdf,.
@@ -10,7 +10,7 @@ CD74HC4067M96,16 bit de/multiplexer 10Pcs,1,4.21,,4.21,https://uk.rs-online.com/
 Micro SD card,Micro SD card  8GB,3,9.24,0,27.72,https://uk.rs-online.com/web/p/sd-cards/2883799,https://docs.rs-online.com/0636/A700000011340737.pdf,.
 Breadboards,830 Points 3 Pcs,2,8.04,,16.08,https://amazon.co.uk/dp/B01M0QJTI5,,.
 Button,30mm Red button from laszlo ,1,0,0,0,,,.
-Jumperwires,Male to male  ,3,1.7,,5.1,https://thepihut.com/products/premium-male-male-jumper-wires-20-x-6-150mm,,.
+Jumperwires,M/M  ,3,1.7,,5.1,https://thepihut.com/products/premium-male-male-jumper-wires-20-x-6-150mm,,.
 USB C cable,USB C cable,1,4.42,,4.42,https://cpc.farnell.com/pro-signal/psg91477/lead-usb30-a-male-usb-type-c-gen-1-1m/dp/CS30873,,.
 USB Plug,USB Plug,1,5.99,,5.99,https://amazon.co.uk/dp/B0BV65Y6B2,,.
 Female pin headers,Female pin headers(50),1,5.3,,5.3,https://uk.rs-online.com/web/p/pcb-headers/2837928,https://docs.rs-online.com/03ef/A700000011064526.pdf,.
