@@ -85,20 +85,27 @@ void DisplayManager::showResult(UIMode mode, const FaultReport& report) {
     printLine(0, "RESULT: FAIL (" + String(report.faultCount) + ")");
     setStatusColor(UIStatus::FAIL);
 
-    // LCD only has 3 remaining rows - show the first 3 faults, point to the
-    // log file for the complete list when there are more than that.
-    uint8_t rowsAvailable = LCD_ROWS - 1;
-    uint8_t shown = min((uint8_t)report.faultCount, rowsAvailable);
+// LCD has one title row, so the remaining rows can show faults.
+// If there are more faults than fit, reserve the last row for a
+// "+N more" message.
+uint8_t faultRows = LCD_ROWS - 1;
 
-    for (uint8_t i = 0; i < shown; i++) {
-        printLine(i + 1, faultLine(report.faults[i]));
-    }
+bool needSummary = report.faultCount > faultRows;
 
-    if (report.faultCount > shown && shown == rowsAvailable) {
-        // overwrite the last shown row with a "+N more" indicator instead
-        uint8_t remaining = report.faultCount - (shown - 1);
-        printLine(rowsAvailable, "+" + String(remaining) + " more see log");
-    }
+uint8_t faultsToShow =
+    needSummary ? (faultRows - 1) : report.faultCount;
+
+// Show the faults that fit
+for (uint8_t i = 0; i < faultsToShow; i++) {
+    printLine(i + 1, faultLine(report.faults[i]));
+}
+
+// Show how many more faults exist
+if (needSummary) {
+    uint8_t remaining = report.faultCount - faultsToShow;
+    printLine(LCD_ROWS - 1,
+              "+" + String(remaining) + " more see log");
+}
 }
 
 void DisplayManager::showGoldenSaved() {
