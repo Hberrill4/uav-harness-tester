@@ -43,14 +43,20 @@ void loop() {
 
     // --- Short press: meaning depends on current mode ---
     if (button.shortPressEvent()) {
+
         if (currentMode == UIMode::NORMAL) {
+
             TestResult actual = tester.runScan();
 
-            // Compare against the captured golden sample if one exists,
-            // otherwise fall back to assuming a straight-through harness.
+            // Compare against the saved golden sample.
+            // Testing is disabled until a golden sample has been captured.
             TestResult expected;
+
             if (!storage.loadGoldenSample(expected)) {
-                expected = ContinuityTester::identityExpectation();
+                display_.showNoGoldenSample();
+                delay(2500);
+                display_.showIdle(currentMode);
+                return;
             }
 
             FaultReport report = FaultAnalyzer::analyze(actual, expected);
@@ -58,12 +64,14 @@ void loop() {
             display_.showResult(currentMode, report);
 
         } else { // ADMIN mode: capture current wiring as the new reference
+
             TestResult golden = tester.runScan();
             storage.saveGoldenSample(golden);
             display_.showGoldenSaved();
         }
 
-        delay(2500); // let the result be read, then return to idle
+        // Let the user read the result before returning to idle.
+        delay(2500);
         display_.showIdle(currentMode);
     }
 }

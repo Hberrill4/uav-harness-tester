@@ -3,7 +3,14 @@
 #include "FaultAnalyzer.h"
 
 enum class UIMode { NORMAL, ADMIN };
-enum class UIStatus { IDLE, PASS, FAIL, GOLDEN_SAVED };
+
+enum class UIStatus {
+    IDLE,
+    PASS,
+    FAIL,
+    GOLDEN_SAVED,
+    NO_GOLDEN
+};
 
 class DisplayManager {
 public:
@@ -11,9 +18,10 @@ public:
     void showIdle(UIMode mode);
     void showResult(UIMode mode, const FaultReport& report);
     void showGoldenSaved();
-    void setStatusColor(UIStatus status); // drives the RGB LED: green/red/blue
+    void showNoGoldenSample();
+    void setStatusColor(UIStatus status);
 
 private:
     void printLine(uint8_t row, const String& text);
-    String faultLine(const WireFault& f); // e.g. "OPEN  W12" or "SHORT W5<->W9"
+    String faultLine(const WireFault& f);
 };
