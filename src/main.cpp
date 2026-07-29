@@ -16,7 +16,8 @@ StorageManager   storage;
 
 UIMode currentMode = UIMode::NORMAL;
 
-void setup() {
+void setup()
+{
     Serial.begin(115200);
 
     button.begin();
@@ -24,12 +25,25 @@ void setup() {
     tester.begin(&mux);
     display_.begin();
 
+    display_.showSelfTest();
+
     if (!storage.begin()) {
-        Serial.println("SD init failed - check wiring/CS pin");
+
+        display_.showSDWriteError();
+
+        while (true) {
+            delay(100);
+        }
     }
 
-    // If you have RTC/NTP available, sync it here so log timestamps are
-    // meaningful instead of seconds-since-boot.
+    TestResult temp;
+
+    if (!storage.loadGoldenSample(temp)) {
+        display_.showNoGoldenSample();
+    }
+    else {
+        display_.showIdle(currentMode);
+    }
 }
 
 void loop() {
@@ -60,7 +74,10 @@ void loop() {
             }
 
             FaultReport report = FaultAnalyzer::analyze(actual, expected);
-            storage.logResult(report, time(nullptr));
+            if (!storage.logResult(report, time(nullptr))) {
+    display_.showSDWriteError();
+    return;
+}
             display_.showResult(currentMode, report);
 
         } else { // ADMIN mode: capture current wiring as the new reference

@@ -30,9 +30,11 @@ static String faultToken(const WireFault& f) {
     return "";
 }
 
-void StorageManager::logResult(const FaultReport& report, time_t timestamp) {
+bool StorageManager::logResult(const FaultReport& report, time_t timestamp) {
     File f = SD.open(LOG_FILE_PATH, FILE_APPEND);
-    if (!f) return;
+   if (!f) {
+    return false;
+}
 
     f.print((uint32_t)timestamp);
     f.print(',');
@@ -44,7 +46,12 @@ void StorageManager::logResult(const FaultReport& report, time_t timestamp) {
         f.print(faultToken(report.faults[i]));
     }
     f.println();
-    f.close();
+
+bool success = f.flush();
+
+f.close();
+
+return success;
 }
 
 void StorageManager::saveGoldenSample(const TestResult& result) {

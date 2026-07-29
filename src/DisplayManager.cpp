@@ -164,3 +164,25 @@ void DisplayManager::showNoGoldenSample() {
 
     setStatusColor(UIStatus::NO_GOLDEN);
 }
+void DisplayManager::showSDWriteError()
+{
+    lcd.clear();
+
+    printLine(0, "SD WRITE ERROR");
+    printLine(1, "Result not");
+    printLine(2, "saved");
+    printLine(3, "Check SD card");
+
+    setStatusColor(UIStatus::FAIL);
+}
+void DisplayManager::showSelfTest()
+{
+    lcd.clear();
+
+    printLine(0, "SELF TEST");
+    printLine(1, "Checking...");
+    printLine(2, "");
+    printLine(3, "");
+
+    setStatusColor(UIStatus::IDLE);
+}

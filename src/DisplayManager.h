@@ -20,7 +20,8 @@ public:
     void showGoldenSaved();
     void showNoGoldenSample();
     void setStatusColor(UIStatus status);
-
+    void showSDWriteError();
+    void showSelfTest();
 private:
     void printLine(uint8_t row, const String& text);
     String faultLine(const WireFault& f);
