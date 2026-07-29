@@ -22,7 +22,11 @@ public:
     void setStatusColor(UIStatus status);
     void showSDWriteError();
     void showSelfTest();
+
 private:
-    void printLine(uint8_t row, const String& text);
+    // color defaults to white-on-black; callers can override to color-code
+    // pass/fail/warning lines without changing every existing call site.
+    void printLine(uint8_t row, const String& text, uint16_t color = 0xFFFF);
+    void clearLine(uint8_t row);
     String faultLine(const WireFault& f);
 };

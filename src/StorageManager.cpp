@@ -32,35 +32,34 @@ static String faultToken(const WireFault& f) {
 
 bool StorageManager::logResult(const FaultReport& report, time_t timestamp) {
     File f = SD.open(LOG_FILE_PATH, FILE_APPEND);
-   if (!f) {
-    return false;
-}
+    if (!f) return false;
 
     f.print((uint32_t)timestamp);
     f.print(',');
     f.print(report.allPass ? "PASS" : "FAIL");
     f.print(',');
-
     for (uint8_t i = 0; i < report.faultCount; i++) {
         if (i > 0) f.print(';');
         f.print(faultToken(report.faults[i]));
     }
     f.println();
 
-bool success = f.flush();
-
-f.close();
-
-return success;
+    f.flush();
+    f.close();
+    return true; // file opened and writes were issued; this SD lib can't confirm
+                 // physical commit any more precisely than that
 }
 
-void StorageManager::saveGoldenSample(const TestResult& result) {
-    SD.remove(GOLDEN_FILE_PATH); // overwrite any existing golden sample
-
+bool StorageManager::saveGoldenSample(const TestResult& result) {
+    SD.remove(GOLDEN_FILE_PATH);
     File f = SD.open(GOLDEN_FILE_PATH, FILE_WRITE);
-    if (!f) return;
-    f.write((const uint8_t*)result.connections, sizeof(result.connections));
+    if (!f) return false;
+
+    size_t written = f.write((const uint8_t*)result.connections, sizeof(result.connections));
+    f.flush();
     f.close();
+
+    return written == sizeof(result.connections); // this one we CAN verify precisely
 }
 
 bool StorageManager::loadGoldenSample(TestResult& outResult) {

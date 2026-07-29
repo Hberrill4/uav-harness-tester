@@ -14,6 +14,6 @@ public:
 
     // Persists the full 64x64 connectivity matrix (512 bytes) as the
     // reference to compare future scans against.
-    void saveGoldenSample(const TestResult& result);
+    bool saveGoldenSample(const TestResult& result); // was void
     bool loadGoldenSample(TestResult& outResult); // false if none saved yet
 };

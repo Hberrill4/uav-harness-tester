@@ -1,15 +1,32 @@
 #include "DisplayManager.h"
 #include "Config.h"
 #include "WireMap.h"
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include <SPI.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_ILI9341.h>
 
-static LiquidCrystal_I2C lcd(LCD_I2C_ADDR, LCD_COLS, LCD_ROWS);
+// --- Text-grid geometry over the raw pixel panel -------------------------
+// Adafruit_GFX's built-in font is 6x8px per glyph at text size 1.
+// At size 2 that's a 12x16px cell, giving a 20-col x 20-row grid on a
+// 240x320 panel. Bump DISP_ROTATION if your enclosure needs a different
+// orientation (0/1/2/3 = 0/90/180/270 degrees).
+static const uint8_t  TEXT_SIZE     = 2;
+static const uint16_t CHAR_W        = 6 * TEXT_SIZE;
+static const uint16_t CHAR_H        = 8 * TEXT_SIZE;
+static const uint8_t  DISP_ROTATION = 0;
+static const uint16_t SCREEN_W      = 240;
+static const uint16_t SCREEN_H      = 320;
+static const uint8_t  DISP_COLS     = SCREEN_W / CHAR_W;  // 20
+static const uint8_t  DISP_ROWS     = SCREEN_H / CHAR_H;  // 20
+
+static Adafruit_ILI9341 tft(PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST);
 
 void DisplayManager::begin() {
-    Wire.begin();
-    lcd.init();
-    lcd.backlight();
+    tft.begin();
+    tft.setRotation(DISP_ROTATION);
+    tft.fillScreen(ILI9341_BLACK);
+    tft.setTextWrap(false);
+    tft.setTextSize(TEXT_SIZE);
 
     pinMode(PIN_LED_R, OUTPUT);
     pinMode(PIN_LED_G, OUTPUT);
@@ -18,40 +35,38 @@ void DisplayManager::begin() {
     showIdle(UIMode::NORMAL);
 }
 
-void DisplayManager::printLine(uint8_t row, const String& text) {
-    lcd.setCursor(0, row);
-    String padded = text;
-    while (padded.length() < LCD_COLS)
-        padded += ' ';
-    lcd.print(padded.substring(0, LCD_COLS));
+void DisplayManager::clearLine(uint8_t row) {
+    tft.fillRect(0, row * CHAR_H, SCREEN_W, CHAR_H, ILI9341_BLACK);
+}
+
+void DisplayManager::printLine(uint8_t row, const String& text, uint16_t color) {
+    if (row >= DISP_ROWS) return; // guard against writing off-panel
+
+    clearLine(row);
+    tft.setCursor(0, row * CHAR_H);
+    tft.setTextColor(color, ILI9341_BLACK);
+    tft.print(text.substring(0, DISP_COLS)); // clip, same intent as old LCD_COLS clip
 }
 
 void DisplayManager::setStatusColor(UIStatus status) {
-
-    // Turn everything off first
     digitalWrite(PIN_LED_R, LOW);
     digitalWrite(PIN_LED_G, LOW);
     digitalWrite(PIN_LED_B, LOW);
 
     switch (status) {
-
         case UIStatus::PASS:
             digitalWrite(PIN_LED_G, HIGH);
             break;
-
         case UIStatus::FAIL:
             digitalWrite(PIN_LED_R, HIGH);
             break;
-
         case UIStatus::GOLDEN_SAVED:
             digitalWrite(PIN_LED_B, HIGH);
             break;
-
         case UIStatus::NO_GOLDEN:
             digitalWrite(PIN_LED_R, HIGH);
-            digitalWrite(PIN_LED_B, HIGH);     // Purple
+            digitalWrite(PIN_LED_B, HIGH); // Purple
             break;
-
         case UIStatus::IDLE:
         default:
             break;
@@ -59,12 +74,10 @@ void DisplayManager::setStatusColor(UIStatus status) {
 }
 
 void DisplayManager::showIdle(UIMode mode) {
-
-    lcd.clear();
+    tft.fillScreen(ILI9341_BLACK);
 
     if (mode == UIMode::ADMIN) {
-
-        printLine(0, "[ADMIN MODE]");
+        printLine(0, "[ADMIN MODE]", ILI9341_CYAN);
         printLine(1, "Connect golden");
         printLine(2, "sample, press");
         printLine(3, "button to save");
@@ -72,9 +85,7 @@ void DisplayManager::showIdle(UIMode mode) {
         digitalWrite(PIN_LED_R, LOW);
         digitalWrite(PIN_LED_G, LOW);
         digitalWrite(PIN_LED_B, HIGH);
-
     } else {
-
         printLine(0, "UAV Harness Test");
         printLine(1, "Connect harness");
         printLine(2, "Press button");
@@ -85,104 +96,73 @@ void DisplayManager::showIdle(UIMode mode) {
 }
 
 String DisplayManager::faultLine(const WireFault& f) {
-
     switch (f.type) {
-
         case FaultType::OPEN:
             return "OPEN   " + wireLabel(f.wireIndex);
-
         case FaultType::SHORT:
             return "SHORT  " + wireLabel(f.wireIndex) + "<->" + wireLabel(f.partnerWire);
-
         case FaultType::MISMATCH:
             return "MISWIRE " + wireLabel(f.wireIndex) + "->" + wireLabel(f.partnerWire);
     }
-
     return "";
 }
 
 void DisplayManager::showResult(UIMode mode, const FaultReport& report) {
-
-    lcd.clear();
+    tft.fillScreen(ILI9341_BLACK);
 
     if (report.allPass) {
-
-        printLine(0, "RESULT: PASS");
-        printLine(1, "Harness PASSED");
-
+        printLine(0, "RESULT: PASS", ILI9341_GREEN);
+        printLine(1, "Harness PASSED", ILI9341_GREEN);
         setStatusColor(UIStatus::PASS);
         return;
     }
 
-    printLine(0, "RESULT: FAIL (" + String(report.faultCount) + ")");
+    printLine(0, "RESULT: FAIL (" + String(report.faultCount) + ")", ILI9341_RED);
     setStatusColor(UIStatus::FAIL);
 
-    // One LCD row is used for the title.
-    uint8_t faultRows = LCD_ROWS - 1;
-
-    // If there are more faults than rows,
-    // reserve the final row for the "+N more" message.
-    bool needSummary = report.faultCount > faultRows;
-
-    uint8_t faultsToShow =
-        needSummary ? (faultRows - 1) : report.faultCount;
+    uint8_t faultRows   = DISP_ROWS - 1;
+    bool    needSummary = report.faultCount > faultRows;
+    uint8_t faultsToShow = needSummary ? (faultRows - 1) : report.faultCount;
 
     for (uint8_t i = 0; i < faultsToShow; i++) {
-        printLine(i + 1, faultLine(report.faults[i]));
+        printLine(i + 1, faultLine(report.faults[i]), ILI9341_RED);
     }
 
     if (needSummary) {
-
         uint8_t remaining = report.faultCount - faultsToShow;
-
-        printLine(
-            LCD_ROWS - 1,
-            "+" + String(remaining) + " more see log"
-        );
+        printLine(DISP_ROWS - 1, "+" + String(remaining) + " more see log", ILI9341_YELLOW);
     }
 }
 
 void DisplayManager::showGoldenSaved() {
-
-    lcd.clear();
-
+    tft.fillScreen(ILI9341_BLACK);
     printLine(0, "[ADMIN MODE]");
-    printLine(1, "Golden sample");
-    printLine(2, "saved OK");
-
+    printLine(1, "Golden sample", ILI9341_BLUE);
+    printLine(2, "saved OK", ILI9341_BLUE);
     setStatusColor(UIStatus::GOLDEN_SAVED);
 }
 
 void DisplayManager::showNoGoldenSample() {
-
-    lcd.clear();
-
-    printLine(0, "NO REFERENCE");
+    tft.fillScreen(ILI9341_BLACK);
+    printLine(0, "NO REFERENCE", ILI9341_MAGENTA);
     printLine(1, "Hold 5 sec");
     printLine(2, "Enter ADMIN");
     printLine(3, "Save harness");
-
     setStatusColor(UIStatus::NO_GOLDEN);
 }
-void DisplayManager::showSDWriteError()
-{
-    lcd.clear();
 
-    printLine(0, "SD WRITE ERROR");
+void DisplayManager::showSDWriteError() {
+    tft.fillScreen(ILI9341_BLACK);
+    printLine(0, "SD WRITE ERROR", ILI9341_RED);
     printLine(1, "Result not");
     printLine(2, "saved");
     printLine(3, "Check SD card");
-
     setStatusColor(UIStatus::FAIL);
 }
-void DisplayManager::showSelfTest()
-{
-    lcd.clear();
 
+void DisplayManager::showSelfTest() {
+    tft.fillScreen(ILI9341_BLACK);
     printLine(0, "SELF TEST");
     printLine(1, "Checking...");
-    printLine(2, "");
-    printLine(3, "");
-
     setStatusColor(UIStatus::IDLE);
 }

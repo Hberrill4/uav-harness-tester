@@ -1,79 +1,92 @@
 #pragma once
 #include <Arduino.h>
- 
+
 // ---------------------------------------------------------------------------
 // HARNESS GEOMETRY
 // ---------------------------------------------------------------------------
-static const uint8_t  NUM_WIRES        = 64;   // total wires under test
-static const uint8_t  MUXES_PER_BANK   = 4;    // 4 muxes per bank
-static const uint8_t  CHANNELS_PER_MUX = 16;   // 74HC4067-style 16:1 mux
- 
-// Two identical connectors, 32 pins each. Wire index 0-31 = connector A,
-// 32-63 = connector B. Update the names/count here if your harness changes.
+static const uint8_t  NUM_WIRES        = 64;
+static const uint8_t  MUXES_PER_BANK   = 4;
+static const uint8_t  CHANNELS_PER_MUX = 16;
+
 static const uint8_t  PINS_PER_CONNECTOR = 32;
 static const char*    CONNECTOR_A_NAME   = "J1";
 static const char*    CONNECTOR_B_NAME   = "J2";
- 
-// Which of the 64 wire positions are actually populated on this harness
-// variant. Bit i = 1 means wire i should show continuity to itself; bit i = 0
-// means that position is an unused mux channel (nothing wired there) and
-// should NOT be flagged as an open fault.
-//
-// This ONLY matters as a fallback before you've captured a golden sample
-// (see ContinuityTester::identityExpectation()) - once a golden sample is
-// saved, it fully describes which positions are populated and this constant
-// is ignored. Still, set it correctly so testing works before your first
-// golden capture too.
-//
-// Default: all 64 populated. Example for a 50-wire harness using positions
-// 0-49 (bits 0-49 set, bits 50-63 clear): 0x0003FFFFFFFFFFFF
+
 static const uint64_t ACTIVE_WIRE_MASK = 0xFFFFFFFFFFFFFFFFULL;
- 
+
+// ---------------------------------------------------------------------------
+// BOARD: Waveshare ESP32-S3-DEV-KIT-N8R8 / NXRX / NxR8 (Octal PSRAM)
+// Pin-header compatible with the official ESP32-S3-DevKitC-1.
+// ---------------------------------------------------------------------------
+// Confirmed restrictions for THIS board:
+//   - GPIO22-25 don't exist on the S3 chip.
+//   - GPIO26-32 = internal SPI flash bus            -> never use.
+//   - GPIO35-37 = internal Octal PSRAM bus (N8R8)    -> never use.
+//   - GPIO43/44 = UART0, wired to the onboard CH343 USB-UART bridge
+//     (your flashing/Serial path)                   -> avoid for I/O.
+//   - GPIO0/3/45/46 = strapping pins (boot mode, JTAG, flash voltage)
+//                                                    -> avoid for I/O.
+//   - GPIO19/20 = native USB D-/D+, also routed through the onboard CH334
+//     USB switch on this board's single USB-C port   -> left unused below
+//     to avoid any ambiguity; free for future expansion if you confirm
+//     native USB isn't active.
+//   - GPIO48 drives this board's onboard addressable RGB LED. Used below
+//     for PIN_SENSE_SIG (a pure input) - the onboard LED will flicker
+//     during scans as a side effect. Cosmetic only, no functional impact.
+// ---------------------------------------------------------------------------
+
 // ---------------------------------------------------------------------------
 // BUTTON
 // ---------------------------------------------------------------------------
-static const uint8_t  PIN_BUTTON        = 4;     // active LOW, INPUT_PULLUP
+static const uint8_t  PIN_BUTTON        = 4;
 static const uint32_t DEBOUNCE_MS       = 30;
-static const uint32_t LONG_PRESS_MS     = 5000;  // hold time to toggle admin mode
- 
+static const uint32_t LONG_PRESS_MS     = 5000;
+
 // ---------------------------------------------------------------------------
-// MUX SELECT LINES (shared across all 4 muxes in a bank -> S0..S3)
+// MUX SELECT LINES
 // ---------------------------------------------------------------------------
-// DRIVE bank = outputs a HIGH onto the selected wire
 static const uint8_t PIN_DRIVE_S0   = 13;
 static const uint8_t PIN_DRIVE_S1   = 12;
 static const uint8_t PIN_DRIVE_S2   = 14;
-static const uint8_t PIN_DRIVE_S3   = 27;
-static const uint8_t PIN_DRIVE_SIG  = 26;   // shared SIG/COM, only one EN active at a time
-static const uint8_t PIN_DRIVE_EN[MUXES_PER_BANK] = {25, 33, 32, 35};
- 
-// SENSE bank = reads back continuity on the far end of the same wire
+static const uint8_t PIN_DRIVE_S3   = 15;
+static const uint8_t PIN_DRIVE_SIG  = 1;
+static const uint8_t PIN_DRIVE_EN[MUXES_PER_BANK] = {6, 7, 8, 9};
+
 static const uint8_t PIN_SENSE_S0   = 16;
 static const uint8_t PIN_SENSE_S1   = 17;
 static const uint8_t PIN_SENSE_S2   = 5;
 static const uint8_t PIN_SENSE_S3   = 18;
-static const uint8_t PIN_SENSE_SIG  = 19;
-static const uint8_t PIN_SENSE_EN[MUXES_PER_BANK] = {21, 22, 23, 15};
- 
+static const uint8_t PIN_SENSE_SIG  = 48;   // moved off GPIO46 (strapping pin)
+static const uint8_t PIN_SENSE_EN[MUXES_PER_BANK] = {21, 10, 11, 38};
+
+// ---------------------------------------------------------------------------
+// SHARED SPI BUS (SD card + TFT, each with its own CS)
+// ---------------------------------------------------------------------------
+static const uint8_t PIN_SPI_SCK   = 33;    // moved off GPIO19 (native USB)
+static const uint8_t PIN_SPI_MOSI  = 34;    // moved off GPIO20 (native USB)
+static const uint8_t PIN_SPI_MISO  = 47;
+
 // ---------------------------------------------------------------------------
 // SD CARD (SPI)
 // ---------------------------------------------------------------------------
-static const uint8_t PIN_SD_CS = 15;  // adjust if it conflicts with EN pins above
- 
+static const uint8_t PIN_SD_CS = 39;
+
 // ---------------------------------------------------------------------------
-// LCD (I2C)
+// TFT DISPLAY (2.8" ILI9341, SPI)
 // ---------------------------------------------------------------------------
-static const uint8_t LCD_I2C_ADDR = 0x27;
-static const uint8_t LCD_COLS     = 20;
-static const uint8_t LCD_ROWS     = 4;
- 
+static const uint8_t PIN_TFT_CS  = 40;
+static const uint8_t PIN_TFT_DC  = 41;
+static const uint8_t PIN_TFT_RST = 42;
+
 // ---------------------------------------------------------------------------
-// STATUS RGB LED (or use LCD backlight color if your LCD supports RGB)
+// STATUS RGB LED (discrete LED, separate from the onboard addressable one)
 // ---------------------------------------------------------------------------
 static const uint8_t PIN_LED_R = 2;
-static const uint8_t PIN_LED_G = 0;
-static const uint8_t PIN_LED_B = 15;
- 
+static const uint8_t PIN_LED_G = 0;    // strapping pin; safe as an OUTPUT
+static const uint8_t PIN_LED_B = 3;    // strapping pin; safe as an OUTPUT
+
+// GPIO19, GPIO20, GPIO46 intentionally left unassigned - see notes above.
+
 // ---------------------------------------------------------------------------
 // FILES
 // ---------------------------------------------------------------------------

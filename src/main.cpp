@@ -60,12 +60,9 @@ void loop() {
 
         if (currentMode == UIMode::NORMAL) {
 
-            TestResult actual = tester.runScan();
-
-            // Compare against the saved golden sample.
-            // Testing is disabled until a golden sample has been captured.
+            // Testing is disabled until a golden sample exists - check first
+            // so we don't waste a ~0.3s scan when there's nothing to compare against.
             TestResult expected;
-
             if (!storage.loadGoldenSample(expected)) {
                 display_.showNoGoldenSample();
                 delay(2500);
@@ -73,21 +70,30 @@ void loop() {
                 return;
             }
 
+            TestResult actual = tester.runScan();
             FaultReport report = FaultAnalyzer::analyze(actual, expected);
+
             if (!storage.logResult(report, time(nullptr))) {
-    display_.showSDWriteError();
-    return;
-}
+                display_.showSDWriteError();
+                return; // error stays on screen until next press
+            }
+
             display_.showResult(currentMode, report);
 
         } else { // ADMIN mode: capture current wiring as the new reference
 
             TestResult golden = tester.runScan();
-            storage.saveGoldenSample(golden);
+
+            if (!storage.saveGoldenSample(golden)) {
+                display_.showSDWriteError();
+                return; // consistent with the logResult failure above
+            }
+
             display_.showGoldenSaved();
         }
 
-        // Let the user read the result before returning to idle.
+        // Reached only on success - let the operator read the result
+        // before the display auto-returns to idle.
         delay(2500);
         display_.showIdle(currentMode);
     }
