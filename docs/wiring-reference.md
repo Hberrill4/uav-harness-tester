@@ -14,7 +14,7 @@ first power-on:
 | Mux EN pins are **active-LOW** (74HC4067-style) | `MuxController::begin/selectDrive/selectSense` | Every wire will read "always open" or "always shorted" — invert the HIGH/LOW in those functions |
 | Drive/sense mux banks share select lines across all 4 muxes in a bank | `Config.h` pin tables | If your breakout wires select lines per-mux instead of shared, you'll need 16 select pins instead of 4 |
 | Sense pin uses internal pulldown, reads HIGH only when continuity exists | `MuxController::begin()` | If your sense circuit is wired differently (e.g. through a voltage divider or optocoupler), the polarity or threshold may need to change |
-| 20x4 I2C LCD at address `0x27` | `DisplayManager` + `Config.h` | Wrong address = blank screen; run an I2C scanner sketch to confirm |
+| 2.8" SPI ILI9341 TFT on `PIN_TFT_CS`/`PIN_TFT_DC`/`PIN_TFT_RST` | `DisplayManager` + `Config.h` | Wrong CS/DC/RST wiring = blank or garbled screen; verify against the pin table in `Config.h` and check SPI continuity with a multimeter |
 | SD card on hardware SPI, single CS pin | `Config.h` (`PIN_SD_CS`) | If using a different SPI bus or a card reader with extra pins, adjust `StorageManager::begin()` |
 
 ## Wire numbering convention

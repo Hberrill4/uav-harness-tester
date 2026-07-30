@@ -11,8 +11,9 @@
 ## Where faults show up
 
 - **LCD (live)**: first 3 faults with type + location, plus a "+N more, see
-  log" line if there are more than that. This is a hardware space
-  constraint (20x4 display), not a data limitation.
+  log" line if there are more than that. This keeps each fault readable at
+  a glance on the 2.8" TFT without needing to scroll; the full list is
+  always available in the SD log regardless of what's shown live.
 - **SD card log** (`test_log.csv`): every fault from every test, one row
   per test run:
 

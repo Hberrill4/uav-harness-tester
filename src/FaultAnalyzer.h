@@ -1,6 +1,6 @@
 #pragma once
-#include <Arduino.h>
-#include "ContinuityTester.h"
+#include <cstdint>
+#include "TestResult.h"
 
 enum class FaultType { OPEN, SHORT, MISMATCH };
 
