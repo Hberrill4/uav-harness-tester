@@ -5,9 +5,10 @@
 #include <SPI.h>
 
 bool StorageManager::begin() {
-    if (!SD.begin(PIN_SD_CS)) {
+    if (!SD.begin(PIN_SD_CS, SPI)) {
         return false;
     }
+
     if (!SD.exists(LOG_FILE_PATH)) {
         File f = SD.open(LOG_FILE_PATH, FILE_WRITE);
         if (f) {
@@ -15,6 +16,7 @@ bool StorageManager::begin() {
             f.close();
         }
     }
+
     return true;
 }
 
