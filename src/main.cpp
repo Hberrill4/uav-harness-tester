@@ -19,11 +19,20 @@ UIMode currentMode = UIMode::NORMAL;
 void setup()
 {
     Serial.begin(115200);
+    
+Serial.println("1");
+button.begin();
 
-    button.begin();
-    mux.begin();
-    tester.begin(&mux);
-    display_.begin();
+Serial.println("2");
+mux.begin();
+
+Serial.println("3");
+tester.begin(&mux);
+
+Serial.println("4");
+display_.begin();
+
+Serial.println("5");
 
     display_.showSelfTest();
 

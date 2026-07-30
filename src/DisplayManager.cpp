@@ -22,6 +22,7 @@ static const uint8_t  DISP_ROWS     = SCREEN_H / CHAR_H;  // 20
 static Adafruit_ILI9341 tft(PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST);
 
 void DisplayManager::begin() {
+    SPI.begin(PIN_SPI_SCK, PIN_SPI_MISO, PIN_SPI_MOSI);
     tft.begin();
     tft.setRotation(DISP_ROTATION);
     tft.fillScreen(ILI9341_BLACK);
