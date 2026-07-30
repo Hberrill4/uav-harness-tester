@@ -62,8 +62,8 @@ static const uint8_t PIN_SENSE_EN[MUXES_PER_BANK] = {21, 10, 11, 38};
 // ---------------------------------------------------------------------------
 // SHARED SPI BUS (SD card + TFT, each with its own CS)
 // ---------------------------------------------------------------------------
-static const uint8_t PIN_SPI_SCK   = 33;    // moved off GPIO19 (native USB)
-static const uint8_t PIN_SPI_MOSI  = 34;    // moved off GPIO20 (native USB)
+static const uint8_t PIN_SPI_SCK   = 19;   // moved off GPIO33 (Octal PSRAM bus)
+static const uint8_t PIN_SPI_MOSI  = 20;   // moved off GPIO34 (Octal PSRAM bus)
 static const uint8_t PIN_SPI_MISO  = 47;
 
 // ---------------------------------------------------------------------------
