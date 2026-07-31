@@ -9,7 +9,7 @@
 - Memory storage for matrices and results (golden sample)
 - Display location and type of fail
 - Sturdy, universal wire connection resistant to in/out movement, easy to click in
-- 
+
 ## Design Evolution
 
 **Initial idea:** Store multiple harness types on an SD card, load the relevant one into RAM, and compare it against the connected harness, navigated via a scroll-wheel menu (new harness / test / view results). Rejected — only one "golden sample" is needed at a time, and this added test time and complexity without being user friendly. It would also create admin problems and using the scroll wheel may cause issues.
