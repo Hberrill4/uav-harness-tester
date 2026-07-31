@@ -34,11 +34,15 @@ A DSub mount connected to a ribbon cable which can connect to the Dsub connector
 
 The main box houses the Main PCB (STM32 microcontroller, multiplexers, SD card, decoupling capacitors, channel protection, and power regulation providing 3.3 V and 5 V rails) plus the push-button input and LCD output. Two adaptor modules connect through D-Sub couplers and cabling to the wire loom under test.
 
+## Operating Process
+![General operating process diagram](../../images/general%20operating%20process.jpg)
+
+On power-up, the ESP32 boots, initializes the LCD, SD card, and multiplexers, then loads the most recent golden sample. In user mode the display reads "Harness tester — Ready — Connect harness." Pressing the button runs the test against the golden sample; a pass shows a green message, a fail shows red with the fail type (short circuit, open circuit, or wire mismatch) and location. Holding the button switches to admin mode (blue text, "Golden loom sample — Ready — Connect harness"), where pressing the button stores a new golden sample to the SD card with a timestamp.
 
 ## Logic Flow Diagram
 ![Project logic flow diagram](../../images/design-architecture-logic-flow-diagram.jpg)
 
-Traces the full logic from power-on through user/admin mode switching, golden-ratio updates, and per-pin harness checking, down to identifying short circuits, open circuits, and wire mismatches, ending with a total results summary. On power-up, the ESP32 boots, initializes the LCD, SD card, and multiplexers, then loads the most recent golden sample. In user mode the display reads "Harness tester — Ready — Connect harness." Pressing the button runs the test against the golden sample; a pass shows a green message, a fail shows red with the fail type (short circuit, open circuit, or wire mismatch) and location. Holding the button switches to admin mode (blue text, "Golden loom sample — Ready — Connect harness"), where pressing the button stores a new golden sample to the SD card with a timestamp.
+Traces the full logic from power-on through user/admin mode switching, golden-ratio updates, and per-pin harness checking, down to identifying short circuits, open circuits, and wire mismatches, ending with a total results summary.
 
 ## Block Diagram
 ![Block diagram](../../images/design-architecture-block-diagram.jpg)
