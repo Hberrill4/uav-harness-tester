@@ -17,6 +17,16 @@ A single button provides all input.
 This keeps the interface simple for everyday users while keeping the golden-sample update path deliberately non-obvious, and all results (with timestamps) are recoverable by plugging the SD card into a PC.
 ## Harness/cable considerations
 A DSub mount connected to a ribbon cable which can connect to the Dsub connector on the outside of the box would keep everything contained and have a fixed position to conect to on the outisde of the box. Using Dsub wire connectors for our floating umbilical cords should also keep the connection stable and be resistant to general use. DIN connectors were also considered but problems with sturdiness and reliability of connection arose aswell as number of pins as the tester is designed to accomadate for a 64 wire loom.
+
+# Final Hardware
+
+- **Microcontroller:** ESP32-S3 (same specs as above)
+- **Multiplexer/Demultiplexer:** CD74HC4067
+- **Input device:** single push button (1 pin)
+- **Storage:** MicroSD SPI/SDIO breakout board
+- **Display:** 2.8" ILI9341 SPI TFT
+- **Connector:** 64-pin DIN 41612 universal PCB connector
+- 
 ## Component Architecture
 ![Component architecture diagram](../../images/entire%20components.png)
 
