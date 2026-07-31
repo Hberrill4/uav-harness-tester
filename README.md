@@ -27,14 +27,14 @@ fault report looks like and how faults are classified.
   Config.h              All pin assignments, timing constants, wire count.
                          File to edit hardware changes.
 #### src/
-  -main.cpp               Owns the state machine (normal/admin, test/capture)
-  -ButtonManager.*         Non-blocking debounce + short-press vs 5s-hold detection
-  -MuxController.*         Addresses any of the 64 wires across the drive/sense mux banks
-  -ContinuityTester.*      Runs the full 64x64 connectivity scan
-  -FaultAnalyzer.*         Classifies faults: OPEN / SHORT / MISMATCH, with location
-  -WireMap.h               Converts wire index -> connector+pin label (e.g. "J1-13")
-  -DisplayManager.*        LCD + RGB
-  -StorageManager.*        SD card logging + golden sample persistence
+  - main.cpp               Owns the state machine (normal/admin, test/capture)
+  - ButtonManager.*         Non-blocking debounce + short-press vs 5s-hold detection
+  - MuxController.*         Addresses any of the 64 wires across the drive/sense mux banks
+  - ContinuityTester.*      Runs the full 64x64 connectivity scan
+  - FaultAnalyzer.*         Classifies faults: OPEN / SHORT / MISMATCH, with location
+  - WireMap.h               Converts wire index -> connector+pin label (e.g. "J1-13")
+  - DisplayManager.*        LCD + RGB
+  - StorageManager.*        SD card logging + golden sample persistence
 #### docs/
   wiring-reference.md     Hardware assumptions baked into the code, pin mapping conventions
   fault-report-format.md  What fault reports look like and how they're generated
