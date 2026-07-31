@@ -13,7 +13,7 @@ static const char*    CONNECTOR_A_NAME   = "J1";
 static const char*    CONNECTOR_B_NAME   = "J2";
 
 static const uint64_t ACTIVE_WIRE_MASK = 0xFFFFFFFFFFFFFFFFULL;
-
+static const uint8_t MAX_FAULTS_ON_SCREEN = 8;
 // ---------------------------------------------------------------------------
 // BOARD: Waveshare ESP32-S3-DEV-KIT-N8R8 / NXRX / NxR8 (Octal PSRAM)
 // Pin-header compatible with the official ESP32-S3-DevKitC-1.

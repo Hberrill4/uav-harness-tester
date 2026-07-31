@@ -13,11 +13,12 @@
 static const uint8_t  TEXT_SIZE     = 2;
 static const uint16_t CHAR_W        = 6 * TEXT_SIZE;
 static const uint16_t CHAR_H        = 8 * TEXT_SIZE;
+static const uint16_t LINE_HEIGHT   = 32;                     // taller than CHAR_H for legibility
 static const uint8_t  DISP_ROTATION = 0;
 static const uint16_t SCREEN_W      = 240;
 static const uint16_t SCREEN_H      = 320;
-static const uint8_t  DISP_COLS     = SCREEN_W / CHAR_W;  // 20
-static const uint8_t  DISP_ROWS     = SCREEN_H / CHAR_H;  // 20
+static const uint8_t  DISP_COLS     = SCREEN_W / CHAR_W;      // 20
+static const uint8_t  DISP_ROWS     = SCREEN_H / LINE_HEIGHT; // 10
 
 static Adafruit_ILI9341 tft(PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST);
 
@@ -37,18 +38,17 @@ void DisplayManager::begin() {
 }
 
 void DisplayManager::clearLine(uint8_t row) {
-    tft.fillRect(0, row * CHAR_H, SCREEN_W, CHAR_H, ILI9341_BLACK);
+    tft.fillRect(0, row * LINE_HEIGHT, SCREEN_W, LINE_HEIGHT, ILI9341_BLACK);
 }
 
 void DisplayManager::printLine(uint8_t row, const String& text, uint16_t color) {
     if (row >= DISP_ROWS) return; // guard against writing off-panel
 
     clearLine(row);
-    tft.setCursor(0, row * CHAR_H);
+    tft.setCursor(0, row * LINE_HEIGHT + (LINE_HEIGHT - CHAR_H) / 2); // center glyph in the taller row
     tft.setTextColor(color, ILI9341_BLACK);
     tft.print(text.substring(0, DISP_COLS)); // clip, same intent as old LCD_COLS clip
 }
-
 void DisplayManager::setStatusColor(UIStatus status) {
     digitalWrite(PIN_LED_R, LOW);
     digitalWrite(PIN_LED_G, LOW);
@@ -80,8 +80,13 @@ void DisplayManager::showIdle(UIMode mode) {
     if (mode == UIMode::ADMIN) {
         printLine(0, "[ADMIN MODE]", ILI9341_CYAN);
         printLine(1, "Connect golden");
-        printLine(2, "sample, press");
+        printLine(2, "sample. press");
         printLine(3, "button to save");
+        printLine(4, "harness as new");
+        printLine(5, "reference sample");
+        printLine(6, "or hold button");
+        printLine(7, "for 5 secs");
+        printLine(8, "to exit admin mode");
 
         digitalWrite(PIN_LED_R, LOW);
         digitalWrite(PIN_LED_G, LOW);
