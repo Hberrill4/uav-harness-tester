@@ -37,16 +37,16 @@ fault report looks like and how faults are classified.
 ### Workflow/
   - **wiring-reference.md**     Hardware assumptions baked into the code, pin mapping conventions
   - **fault-report-format.md**  What fault reports look like and how they're generated
-  - **Assembly** The process behind the prototype and how everything was made
-  - **Design-Architecture** General system layout and how components interact and connect
-  - **Design-Enclosure** Modular test pod and general box to use on a test bench and house the tester
-  - **Design-PCB** PCB design process and final product
-  - **Hardware** Components considered and finalized decisions
-  - **Images** Contains all images used in other folders
+  - **Assembly**                The process behind the prototype and how everything was made
+  - **Design-Architecture**     General system layout and how components interact and connect
+  - **Design-Enclosure**        Modular test pod and general box to use on a test bench and house the tester
+  - **Design-PCB**              PCB design process and final product
+  - **Hardware**                Components considered and finalized decisions
+  - **Images**                  Contains all images used in other folders
   - **Manufacture**
-  - **Project-files** Contains all external files used
-  - **Research-existing-testers** Initial research to form own basis and understanding
-  - **Testing-validation** Different dilemmas encountered and problems considered including their solutions. Also involves product testing and validating.
+  - **Project-files**           Contains all external files used
+  - **Research-existing-testers**Initial research to form own basis and understanding
+  - **Testing-validation**       Different dilemmas encountered and problems considered including their solutions. Also involves product testing and validating.
     
 **platformio.ini**            Build config (ESP32, Arduino framework)
 
