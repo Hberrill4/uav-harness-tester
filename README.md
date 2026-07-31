@@ -45,7 +45,7 @@ fault report looks like and how faults are classified.
   - **Images**                  Contains all images used in other folders
   - **Manufacture**
   - **Project-files**           Contains all external files used
-  - **Research-existing-testers**Initial research to form own basis and understanding
+  - **Research-existing-testers**  Initial research to form own basis and understanding
   - **Testing-validation**       Different dilemmas encountered and problems considered including their solutions. Also involves product testing and validating.
     
 **platformio.ini**            Build config (ESP32, Arduino framework)
