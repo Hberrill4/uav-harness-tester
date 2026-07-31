@@ -9,11 +9,11 @@ The ESP32 is faster with more RAM/flash (good for future/industrial expansion) b
 Finally the ESP32 was preferred as it provided more internal RAM which would allow the 64x64 matrices to be accessed in this way and improve the speed of the system massively as well as ease of use.
 
 ## Other Component Considerations
-Was tough to find connecting cables that accommodated for a 64 wire harness so a decision was made to split it in half and use 2 idc rainbow ribbon cables inside of the modular test pod as they are already protected in that way and to use 2 DSsub connectors as the floating umbilical cords as these can withstand the daily usage and strain.
-I also looked at the screen and lcd screen being able to share SPI bus ports as this would then require less GPIO pins on the Arduino.
-Another consideration was monitoring the noise and surges that would happen due to there being many MUX switches so ceramic capacitors would be needed to mitigate this.
-The MUX would have to have 4 control pins and 16 input/output pins while being able to operate on the esp32 to allow for switching between 64 wires.
-A rotary encoder was originally looked at to be able to scroll through options but a single push button was decided upon as this would be far more user friendly and be able to easily be mounted on the modular test pod and only require one user input
+Was tough to find connecting cables that accommodated for a 64 wire harness so a decision was made to split it in half and use 2 idc rainbow ribbon cables inside of the modular test pod as they are already protected in that way and to use 2 DSsub connectors as the floating umbilical cords as these can withstand the daily usage and strain.  
+I also looked at the screen and lcd screen being able to share SPI bus ports as this would then require less GPIO pins on the Arduino.  
+Another consideration was monitoring the noise and surges that would happen due to there being many MUX switches so ceramic capacitors would be needed to mitigate this.  
+The MUX would have to have 4 control pins and 16 input/output pins while being able to operate on the esp32 to allow for switching between 64 wires.  
+A rotary encoder was originally looked at to be able to scroll through options but a single push button was decided upon as this would be far more user friendly and be able to easily be mounted on the modular test pod and only require one user input.  
 Headers would also be required to connect to the DSub cables off the PCB.
 
 ## Final Hardware
