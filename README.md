@@ -21,13 +21,12 @@ admin = blue) and get logged with a timestamp to the SD card.
 See [docs/fault-report-format.md](docs/fault-report-format.md) for what a
 fault report looks like and how faults are classified.
 
-## Project structure
+## Firmware structure
 
-```
-include/
+#### include/
   Config.h              All pin assignments, timing constants, wire count.
                          File to edit hardware changes.
-src/
+#### src/
   main.cpp               Owns the state machine (normal/admin, test/capture)
   ButtonManager.*         Non-blocking debounce + short-press vs 5s-hold detection
   MuxController.*         Addresses any of the 64 wires across the drive/sense mux banks
@@ -36,11 +35,10 @@ src/
   WireMap.h               Converts wire index -> connector+pin label (e.g. "J1-13")
   DisplayManager.*        LCD + RGB
   StorageManager.*        SD card logging + golden sample persistence
-docs/
+#### docs/
   wiring-reference.md     Hardware assumptions baked into the code, pin mapping conventions
   fault-report-format.md  What fault reports look like and how they're generated
 platformio.ini            Build config (ESP32, Arduino framework)
-```
 
 
 
