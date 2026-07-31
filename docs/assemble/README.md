@@ -6,8 +6,8 @@
 
 - [ ] Build a common 3.3V rail and ground bus on the breadboard.
 - [ ] Add decoupling capacitors near the LCD and near each mux IC (0.1 µF
-  ceramic close to each chip is enough at this stage).
-- [ ] Confirm rail voltage under load with a multimeter before connecting
+  ceramic)
+- [ ] Confirmed rail voltage under load with a multimeter before connecting
   any ICs
 
 ## Phase 2 — Display bring-up (ILI9341)
@@ -26,10 +26,8 @@ Wire, using the corrected pin map:
 - [ ] Wire the table above, plus backlight/LED to 3.3V
 - [ ] Flash just `DisplayManager`'s init + a test screen.
 - [ ] **Expect:** a stable, correctly-oriented test image with no tearing,
-  no random pixels, no color inversion. If the screen is white/blank, check
-  RST and CS first — those are the two most common ILI9341 bring-up
-  failures. If colors are inverted or shifted, it's usually DC.
-- [ ] Confirm this works cleanly before moving on — SPI wiring issues are
+  no random pixels, no color inversion.
+- [ ] Confirmed this works cleanly before moving on as SPI wiring issues are
   much easier to isolate now than once the SD card and muxes are also on
   the bus.
 
@@ -39,25 +37,17 @@ Wire, using the corrected pin map:
   LCD, but has its own CS on **GPIO 39** (`PIN_SD_CS`).
 - [ ] Flash `StorageManager` alone and confirm you can write and read back
   a log file at `/test_log.csv`.
-- [ ] **Expect:** GPIO39 reads HIGH immediately after reset (this is a
-  quirk of that specific pin, not a bug) — that's actually the correct
+- [ ] **Expect:** GPIO39 reads HIGH immediately after reset which is the correct
   idle state for an SPI CS line, so nothing to fix there.
-- [ ] Test with the card inserted *and* removed so you know what the
-  failure mode looks like (you'll want that later when triaging field
-  issues, not just bench ones).
-- [ ] If writes silently fail or the card isn't detected, double-check CS
-  really landed on 39 and not still on 15 from an old build — this is the
-  exact conflict that was fixed, so it's worth a quick continuity check
-  with a multimeter if anything looks off.
+- [ ] Test with the card inserted and removed to know what the
+  failure mode looks like 
+
 
 ## Phase 4 — Button input
 
-- [ ] Wire the single push-button to **GPIO 4** (`PIN_BUTTON`), with a
-  pull resistor — GPIO4 supports an internal pull-up, so an external
-  resistor isn't required unless you're seeing noise.
+- [ ] Wire the single push-button to **GPIO 4** (`PIN_BUTTON`)
 - [ ] Flash `ButtonManager` alone and confirm short-press, long-press
   (≥5000ms per `LONG_PRESS_MS`), and no false triggers from switch bounce
-  (30ms debounce window per `DEBOUNCE_MS` — tighten if you see chatter).
 
 ## Phase 5 — One mux pair (proof of concept)
 
@@ -83,20 +73,14 @@ Sense bank (first chip only):
 | SIG | 48 |
 | EN[0] | 21 |
 
-- [ ] Wire just these two chips: shared S0-S3 address lines within each
+- [ ] Wired just these two chips: shared S0-S3 address lines within each
   bank, separate EN lines.
-- [ ] Flash `MuxController` + `ContinuityTester` in a reduced mode (or
-  just test channel 0–15 manually).
+- [ ] Flash `MuxController` + `ContinuityTester` in a reduced mode
 - [ ] Bridge a single jumper wire between one drive channel and one sense
   channel and confirm the firmware reports continuity correctly, and
   reports open on all other channel combinations.
-- [ ] Note: GPIO21 (`SENSE_EN[0]`) transitions to its post-reset state a
-  little slower than most GPIOs. Shouldn't matter once the firmware is
-  driving it explicitly, but if you see a spurious enable right at
-  power-on before firmware takes over, this is why.
 
-This is the phase to spend real time on — once one drive/sense pair is
-verified, the remaining 6 muxes are just repetition of a known-good
+Once one drive/sense pair is verified, the remaining 6 muxes are just repetition of a known-good
 pattern.
 
 ## Phase 6 — Scale to all 8 muxes
@@ -114,13 +98,10 @@ Remaining EN lines:
   each bank (drive S0-S3: 13/12/14/15, sense S0-S3: 16/17/5/18), each chip
   with its own EN line from the table above.
 - [ ] Run the full 64×64 matrix scan with a handful of test jumpers spread
-  across different banks (not just adjacent channels — you want to catch
+  across different banks (not just adjacent channels — want to catch
   cross-talk or address-line issues that only show up between banks).
 - [ ] Use `countPopulated()` to confirm the wire count matches what you
   physically jumpered before trusting a full golden-sample capture.
-- [ ] `ACTIVE_WIRE_MASK` is currently set to all 64 bits active — fine for
-  this full-population prototype, but remember to narrow it if you ever
-  test a harness with fewer than 64 populated wires.
 
 ## Phase 7 — Connector integration (J1 / J2)
 
