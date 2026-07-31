@@ -37,7 +37,9 @@ fault report looks like and how faults are classified.
   - **StorageManager.**     SD card logging + golden sample persistence
 #### docs/
   - **wiring-reference.md**     Hardware assumptions baked into the code, pin mapping conventions
-  - **fault-report-format.md**  What fault reports look like and how they're generated  
+  - **fault-report-format.md**  What fault reports look like and how they're generated
+
+    
 **platformio.ini**            Build config (ESP32, Arduino framework)
 
 
