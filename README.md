@@ -24,7 +24,7 @@ fault report looks like and how faults are classified.
 ## Firmware structure
 
 #### include/
-  - Config.h              All pin assignments, timing constants, wire count.
+  - **Config.h**            All pin assignments, timing constants, wire count.
                          File to edit hardware changes.
 #### src/
   - main.cpp               Owns the state machine (normal/admin, test/capture)
