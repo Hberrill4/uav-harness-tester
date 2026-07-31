@@ -37,7 +37,16 @@ fault report looks like and how faults are classified.
 ### Workflow/
   - **wiring-reference.md**     Hardware assumptions baked into the code, pin mapping conventions
   - **fault-report-format.md**  What fault reports look like and how they're generated
-
+  - **Assembly**
+  - **Design-Architecture**
+  - **Design-Enclosure**
+  - **Design-PCB**
+  - **Hardware**
+  - **Images**
+  - **Manufacture**
+  - **Project-files**
+  - **Research-existing-testers**
+  - **Testing-validation**
     
 **platformio.ini**            Build config (ESP32, Arduino framework)
 
