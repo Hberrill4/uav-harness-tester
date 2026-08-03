@@ -64,6 +64,7 @@ that shaped these decisions and [Bill of Materials](/Workflow/Project-files/BOM%
 - [x] Draft schematic — measurement circuit, power flags, net labels, test points, decoupling
 - [x] Run ERC and resolve until clean
 - [ ] Assign footprints and verify against datasheets
+- [ ] Get schematic reviewed and approved
 - [ ] Import schematic into PCB editor
 - [ ] Arrange components — wide power traces, digital/analog separation
 - [ ] Route traces
