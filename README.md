@@ -18,7 +18,7 @@ Every test scans all 64 wires against all 64 sense channels (not just a
 not just opens. Results show on the LCD (pass = green, fail = red,
 admin = blue) and get logged with a timestamp to the SD card.
 
-See [docs/fault-report-format.md](docs/fault-report-format.md) for what a
+See [Workflow/fault-report-format.md](Workflow/fault-report-format.md) for what a
 fault report looks like and how faults are classified.
 
 ## Firmware structure
