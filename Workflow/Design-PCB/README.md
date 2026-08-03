@@ -73,7 +73,7 @@ that shaped these decisions and [Bill of Materials](/Workflow/Project-files/BOM%
 - [ ] Final review against schematic
 
 **A breadboard prototype was built and validated first** — see
-[`../prototype/`](../prototype/) for the bring-up log — before committing
+[`../Assembly/`](../Assembly/) for the bring-up log — before committing
 to PCB layout.
 
 ## Known issues carried from design review
