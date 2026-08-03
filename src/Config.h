@@ -26,10 +26,6 @@ static const uint8_t MAX_FAULTS_ON_SCREEN = 8;
 //     (your flashing/Serial path)                   -> avoid for I/O.
 //   - GPIO0/3/45/46 = strapping pins (boot mode, JTAG, flash voltage)
 //                                                    -> avoid for I/O.
-//   - GPIO19/20 = native USB D-/D+, also routed through the onboard CH334
-//     USB switch on this board's single USB-C port   -> left unused below
-//     to avoid any ambiguity; free for future expansion if you confirm
-//     native USB isn't active.
 //   - GPIO48 drives this board's onboard addressable RGB LED. Used below
 //     for PIN_SENSE_SIG (a pure input) - the onboard LED will flicker
 //     during scans as a side effect. Cosmetic only, no functional impact.
