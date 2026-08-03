@@ -30,7 +30,7 @@ A DSub mount connected to a ribbon cable which can connect to the Dsub connector
 
 
 ## Component Architecture
-![Component architecture diagram](Workflow/images/entire%20components.png)
+![Component architecture diagram](https://raw.githubusercontent.com/Hberrill4/uav-harness-tester/main/Workflow/images/entire%20components.png)
 The main box houses the Main PCB (ESP32-S3 microcontroller, multiplexers, SD card, decoupling capacitors, channel protection, and power regulation providing 3.3 V and 5 V rails) plus the push-button input and LCD output. Two adaptor modules connect through D-Sub couplers and cabling to the wire loom under test.
 
 ## Operating Process
