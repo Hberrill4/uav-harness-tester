@@ -147,6 +147,7 @@ void DisplayManager::showGoldenSaved() {
     printLine(0, "[ADMIN MODE]");
     printLine(1, "Golden sample", ILI9341_BLUE);
     printLine(2, "saved OK", ILI9341_BLUE);
+    printLine(3, "Press to return");
     setStatusColor(UIStatus::GOLDEN_SAVED);
 }
 

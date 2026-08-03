@@ -111,6 +111,7 @@ void loop() {
                 return;
             }
 
+            storage.logGoldenSampleEvent(time(nullptr)); // note the change in the test log
             display_.showGoldenSaved();
             resultHeld = true;
         }

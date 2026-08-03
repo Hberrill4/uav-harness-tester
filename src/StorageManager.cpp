@@ -9,12 +9,31 @@ bool StorageManager::begin() {
         return false;
     }
 
-    if (!SD.exists(LOG_FILE_PATH)) {
+    bool isNewFile = !SD.exists(LOG_FILE_PATH);
+
+    if (isNewFile) {
         File f = SD.open(LOG_FILE_PATH, FILE_WRITE);
         if (f) {
-            f.println("timestamp,result,faults");
+            f.println("test_number,timestamp,result,faults");
             f.close();
         }
+        _nextTestNumber = 1;
+    } else {
+        // Count existing data rows so numbering survives reboots without
+        // needing a separate counter file that could drift out of sync.
+        File f = SD.open(LOG_FILE_PATH, FILE_READ);
+        uint32_t rowCount = 0;
+        if (f) {
+            bool sawHeader = false;
+            while (f.available()) {
+                String line = f.readStringUntil('\n');
+                if (line.length() == 0) continue;
+                if (!sawHeader) { sawHeader = true; continue; }
+                rowCount++;
+            }
+            f.close();
+        }
+        _nextTestNumber = rowCount + 1;
     }
 
     return true;
@@ -36,6 +55,8 @@ bool StorageManager::logResult(const FaultReport& report, time_t timestamp) {
     File f = SD.open(LOG_FILE_PATH, FILE_APPEND);
     if (!f) return false;
 
+    f.print(_nextTestNumber);
+    f.print(',');
     f.print((uint32_t)timestamp);
     f.print(',');
     f.print(report.allPass ? "PASS" : "FAIL");
@@ -48,8 +69,27 @@ bool StorageManager::logResult(const FaultReport& report, time_t timestamp) {
 
     f.flush();
     f.close();
+
+    _nextTestNumber++; // only consumed once a write is actually issued
     return true; // file opened and writes were issued; this SD lib can't confirm
                  // physical commit any more precisely than that
+}
+
+bool StorageManager::logGoldenSampleEvent(time_t timestamp) {
+    File f = SD.open(LOG_FILE_PATH, FILE_APPEND);
+    if (!f) return false;
+
+    // Uses the same 4-column shape as a normal row, but with a distinct
+    // "result" value so log readers/scripts can grep for it easily.
+    // Does NOT consume a test_number — this isn't a test, it's an event marker.
+    f.print("-,"); // no test number applies to this row
+    f.print((uint32_t)timestamp);
+    f.print(",GOLDEN_SAMPLE_UPDATED,");
+    f.println();
+
+    f.flush();
+    f.close();
+    return true;
 }
 
 bool StorageManager::saveGoldenSample(const TestResult& result) {
