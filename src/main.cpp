@@ -15,11 +15,12 @@ DisplayManager   display_;
 StorageManager   storage;
 
 UIMode currentMode = UIMode::NORMAL;
+bool   resultHeld  = false;   // true while a pass/fail/save/error result is on screen
 
 void setup()
 {
     Serial.begin(115200);
-    
+
 Serial.println("1");
 button.begin();
 
@@ -60,12 +61,21 @@ void loop() {
 
     // --- Mode toggle: fires once, exactly when the hold crosses 5s ---
     if (button.longPressEvent()) {
+        resultHeld = false; // don't let a stale held result linger across a mode switch
         currentMode = (currentMode == UIMode::NORMAL) ? UIMode::ADMIN : UIMode::NORMAL;
         display_.showIdle(currentMode);
+        return;
     }
 
-    // --- Short press: meaning depends on current mode ---
+    // --- Short press: meaning depends on whether a result is currently held ---
     if (button.shortPressEvent()) {
+
+        if (resultHeld) {
+            // This press just dismisses the held result and returns to idle.
+            resultHeld = false;
+            display_.showIdle(currentMode);
+            return;
+        }
 
         if (currentMode == UIMode::NORMAL) {
 
@@ -84,10 +94,12 @@ void loop() {
 
             if (!storage.logResult(report, time(nullptr))) {
                 display_.showSDWriteError();
-                return; // error stays on screen until next press
+                resultHeld = true; // error stays on screen until next press
+                return;
             }
 
             display_.showResult(currentMode, report);
+            resultHeld = true; // pass or fail - both now wait for the next press
 
         } else { // ADMIN mode: capture current wiring as the new reference
 
@@ -95,15 +107,15 @@ void loop() {
 
             if (!storage.saveGoldenSample(golden)) {
                 display_.showSDWriteError();
-                return; // consistent with the logResult failure above
+                resultHeld = true; // consistent with the logResult failure above
+                return;
             }
 
             display_.showGoldenSaved();
+            resultHeld = true;
         }
 
-        // Reached only on success - let the operator read the result
-        // before the display auto-returns to idle.
-        delay(2500);
-        display_.showIdle(currentMode);
+        // No auto-return-to-idle here anymore -
+        // the screen now waits for the next press to dismiss.
     }
 }

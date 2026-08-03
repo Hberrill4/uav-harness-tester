@@ -119,6 +119,7 @@ void DisplayManager::showResult(UIMode mode, const FaultReport& report) {
     if (report.allPass) {
         printLine(0, "RESULT: PASS", ILI9341_GREEN);
         printLine(1, "Harness PASSED", ILI9341_GREEN);
+        printLine(DISP_ROWS - 1, "Press to continue", ILI9341_WHITE);
         setStatusColor(UIStatus::PASS);
         return;
     }
@@ -138,6 +139,7 @@ void DisplayManager::showResult(UIMode mode, const FaultReport& report) {
         uint8_t remaining = report.faultCount - faultsToShow;
         printLine(DISP_ROWS - 1, "+" + String(remaining) + " more see log", ILI9341_YELLOW);
     }
+    printLine(DISP_ROWS - 1, "Press to continue", ILI9341_WHITE);
 }
 
 void DisplayManager::showGoldenSaved() {
