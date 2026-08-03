@@ -75,6 +75,15 @@ static const uint8_t PIN_TFT_DC  = 41;
 static const uint8_t PIN_TFT_RST = 42;
 
 // ---------------------------------------------------------------------------
+// STATUS RGB LED (discrete LED, separate from the onboard addressable one)
+// ---------------------------------------------------------------------------
+static const uint8_t PIN_LED_R = 2;
+static const uint8_t PIN_LED_G = 0;    // strapping pin; safe as an OUTPUT
+static const uint8_t PIN_LED_B = 3;    // strapping pin; safe as an OUTPUT
+
+// GPIO19, GPIO20, GPIO46 intentionally left unassigned - see notes above.
+
+// ---------------------------------------------------------------------------
 // FILES
 // ---------------------------------------------------------------------------
 static const char* LOG_FILE_PATH    = "/test_log.csv";
