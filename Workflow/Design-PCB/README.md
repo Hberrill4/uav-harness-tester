@@ -22,24 +22,25 @@ that shaped these decisions and [Bill of Materials](/Workflow/Project-files/BOM%
 - The harness under test connects via modular pods over a floating
   umbilical interconnect
 
-## Bill of materials
+## PCB Bill of materials
 
 | Component | Qty | Notes |
 |---|---|---|
 | ESP32-S3-WROOM-1 (N8R8, Octal PSRAM) | 1 | Corrected from an earlier WROOM-32 mislabel during design review — confirm GPIO33–37 stay clear of the Octal PSRAM bus |
 | CD74HC4067 16-channel mux/demux | 8 | 4 drive-side, 4 sense-side; share address lines within each bank |
-| ILI9341 2.8" SPI TFT | 1 | Requires a dedicated DC pin, not just CS/RST — missed in an earlier schematic revision |
+| ILI9341 2.8" SPI TFT Module | 1 | Off-board, panel-mounted on enclosure; connects to PCB via header/ribbon |
+| TFT interconnect header | 1 | Mates PCB to panel-mounted display module |
 | microSD card module (SPI) | 1 | Shares the SPI bus with the TFT; separate CS |
-| DIN 41612 64-pin connector | 1 | Interfaces to the harness-under-test pods |
-| Voltage regulator | 1 | 5V input → 3.3V logic rail |
+| Female D-Sub Header | 1 | Interfaces to the harness-under-test pods |
 | Protection resistors | TBD | Series current-limiting on ESP32-facing measurement lines — flagged in design review as a missing block, being added here |
 | Decoupling capacitors | 1 per IC | 0.1 µF ceramic, placed close to each mux and the TFT |
-| Push button | 1 | Single-button UI, debounced in firmware |
+| Push button (panel-mount) | 1 | Off-board, mounted on enclosure; wired to PCB via 2-pin header — debounced in firmware |
+| Button interconnect header | 1 | 2-pin header for panel-mount button leads |
 
 ## Functional requirements
 
 **Test coverage**
-- Test all 64 harness wires for continuity and fault conditions
+- Test all harness wires (up to 64) for continuity and fault conditions
 - Store a golden sample reference in RAM and persist it to SD card
 
 **Data & UI**
