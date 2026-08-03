@@ -30,17 +30,17 @@ A DSub mount connected to a ribbon cable which can connect to the Dsub connector
 
 
 ## Component Architecture
-![Component architecture diagram](../../images/entire%20components.png)
+![Component architecture diagram](Workflow/images/entire%20components.png)
 
 The main box houses the Main PCB (STM32 microcontroller, multiplexers, SD card, decoupling capacitors, channel protection, and power regulation providing 3.3 V and 5 V rails) plus the push-button input and LCD output. Two adaptor modules connect through D-Sub couplers and cabling to the wire loom under test.
 
 ## Operating Process
-![General operating process diagram](../../images/general%20operating%20process.jpg)
+![General operating process diagram](Workflow/images/general%20operating%20process.jpg)
 
 On power-up, the ESP32 boots, initializes the LCD, SD card, and multiplexers, then loads the most recent golden sample. In user mode the display reads "Harness tester — Ready — Connect harness." Pressing the button runs the test against the golden sample; a pass shows a green message, a fail shows red with the fail type (short circuit, open circuit, or wire mismatch) and location. Holding the button switches to admin mode (blue text, "Golden loom sample — Ready — Connect harness"), where pressing the button stores a new golden sample to the SD card with a timestamp.
 
 
 ## Block Diagram
-![Block diagram](../../images/design-architecture-block-diagram.jpg)
+![Block diagram](Workflow/images/design-architecture-block-diagram.jpg)
 
 Shows the electrical connections between the power supply, microcontroller, LCD screen, microSD card reader/writer, button, and two sets of multiplexers, including the shared SPI bus (CLK/SI/SO mapped to SCK/MOSI/MISO) and the 16-input/16-output connections to the wire harness under test.
