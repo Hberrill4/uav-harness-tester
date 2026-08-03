@@ -7,7 +7,7 @@ continuity tester: an ESP32-S3-based instrument that tests all 64 wires of
 a UAV harness for continuity and fault conditions, logs results with
 timestamps, and displays outcomes on an onboard TFT via a single-button
 interface. See the [main README](../../README.md) for the full project
-overview and [`design-review/`](../design-review/) for the hardware review
+overview and [`Workflow/Hardware/`](../Hardware/) for the hardware review
 that shaped these decisions.
 
 ---
