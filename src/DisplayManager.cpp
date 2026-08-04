@@ -8,8 +8,7 @@
 // --- Text-grid geometry over the raw pixel panel -------------------------
 // Adafruit_GFX's built-in font is 6x8px per glyph at text size 1.
 // At size 2 that's a 12x16px cell, giving a 20-col x 20-row grid on a
-// 240x320 panel. Bump DISP_ROTATION if your enclosure needs a different
-// orientation (0/1/2/3 = 0/90/180/270 degrees).
+// 240x320 panel.
 static const uint8_t  TEXT_SIZE     = 2;
 static const uint16_t CHAR_W        = 6 * TEXT_SIZE;
 static const uint16_t CHAR_H        = 8 * TEXT_SIZE;

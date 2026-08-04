@@ -1,8 +1,7 @@
 #include "MuxController.h"
 #include "Config.h"
 
-// NOTE: 74HC4067 EN pin is active LOW on most breakout boards. Adjust the
-// HIGH/LOW polarity below if your particular mux/breakout differs.
+
 
 void MuxController::begin() {
     pinMode(PIN_DRIVE_S0, OUTPUT);
