@@ -59,6 +59,13 @@ that shaped these decisions and [Bill of Materials](/Workflow/Project-files/BOM%
 - 5V input, 3.3V logic, SPI for TFT/SD, multiplexer channel switching
 - Protection on all ESP32-facing measurement inputs
 
+**A breadboard prototype was built and validated first** — see
+[`../Assembly/`](../Assembly/) for the bring-up log — before committing
+to PCB layout.
+
+## Schematics
+KiCAD was used to route all traces. Although a decision was made to mount the hardware components ourselves it was key to ensure the right components were selected in KiCAD to maintain the same dimensions and pin There additional software like espressif was downloaded to ensure such accuracy could be maintained.
+
 ## Design workflow
 
 - [x] Draft schematic — measurement circuit, power flags, net labels, test points, decoupling
