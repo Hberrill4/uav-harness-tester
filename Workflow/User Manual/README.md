@@ -1,10 +1,9 @@
-# [UAV harness tester] — User Manual
+# UAV harness tester — User Manual
 ### UAV Wire Harness Continuity Tester
 
-**Document version:** v0.1 (draft)
-**Date:** [YYYY-MM-DD]
-**Author:** [Harrison Berrill]
-**Firmware version this guide applies to:** [e.g. v1.0]
+**Document version:** v0.2 (draft)
+**Date:** 2026-08-DD
+**Author:** Harrison Berrill
 
 ## 1. Introduction
 
