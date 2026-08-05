@@ -7,7 +7,7 @@
 
 ## 1. Introduction
 
-- **Purpose:** Verifies continuity across a wire harness against a known-good "golden sample" for up to 64 wires. flags OPEN/SHORT/MISMATCH faults and their location. It replaces manual time consuming point-to-point ohmmeter checks
+- **Purpose:** Verifies continuity across a wire harness against a known-good "golden sample" for up to 64 wires. flags OPEN/SHORT/MISMATCH faults and their location. Saves test number, result of scan and when a new golden harness is submitted onto an SD card. It replaces manual time consuming point-to-point ohmmeter checks
 - **Intended audience:** Assembly technicians, Drone operators or anyone using a wire loom.
 - **Scope:** This Manual covers usage, troubleshooting and maintenance. The development of the product and code/firmware are covered separately in the repo.
 - **Key features:**
@@ -52,52 +52,47 @@
 |---|---|---|
 | Tester | Tests current wire harness | Switches to admin mode |
 | Admin | Submits current harness as new golden sample | Switches to Tester mode |
+| All | After scan its used to move off the test screen |
 
 ### 4.3 Indicators
 | Indicator | State | Meaning |
 |---|---|---|
 | RGB LED | Green | [Pass] |
 | RGB LED | Red | [Fail] |
-| RGB LED | [Color] | [Golden sample mode] |
+| RGB LED | [Blue] | [Golden sample mode] |
 | Display | — | Shows live scan status and fault report, color-coded per mode (see 4.4) |
 
 *Note: GPIO48 (RGB LED) is shared with the onboard LED — cosmetic flicker during scans is expected, not a fault.*
 
 ### 4.4 Display Color Reference
 
-*The display uses the same green/red/yellow scheme throughout, so the operator only needs to learn it once. Confirm/adjust the exact hex values against `DisplayManager` — the mapping below reflects the current color-coded fault design.*
 
 | Mode / Result | Display Color | What it means |
 |---|---|---|
 | Idle / standby | [neutral — e.g. white or gray text] | Waiting for a scan to start |
-| Golden Sample Capture — in progress | Yellow | Matrix scan running; do not disconnect the harness |
-| Golden Sample Capture — success | Green | Sample stored; wire count shown |
+| Golden Sample Capture — menu | Cyan | Matrix scan ready to be submitted |
+| Golden Sample Capture — success | Blue | Sample stored; wire count shown |
 | Golden Sample Capture — failure | Red | 0 (or too few) wires detected — reseat harness and retry |
-| Test Scan — in progress | Yellow | Matrix scan running; do not disconnect the harness |
+| Test Scan — No reference | Magenta | No golden sample to refer off |
 | Test Result — PASS | Green | Scan matches golden sample exactly |
 | Test Result — OPEN | Red | Expected connection missing |
 | Test Result — SHORT | Red | Unexpected connection detected |
-| Test Result — MISMATCH | Yellow | Connection present but on the wrong pin/wire |
+| Test Result — MISMATCH | Red | Connection present but on the wrong pin/wire |
 
-*Because OPEN and SHORT share red, the fault **label text** (not just color) is what tells them apart on the results line — make sure the operator knows to read the code, not just the color, when a fail shows.*
+The Display will also show the location of the failure and its type. eg. Mismatch J11->J13
 
 ---
 
 ## 5. Getting Started
 
 ### 5.1 Powering On
-1. [Step-by-step power-on sequence]
-2. [What the boot/splash screen looks like]
-3. [Self-test behavior, if any]
+1. Connect USB-C to port
+2. Components will initialize and appear ready to scan
 
 ### 5.2 Connecting a Harness
-1. [How to align/seat the connector — orientation cues, keying]
-2. [Confirm secure connection — what indicates a bad seat]
+1. Connect the harness that's being tested to the 2 adaptors which connect via D-Sub to the main test enclosure
+2. Ensure connection is fully secure
 
-### 5.3 First-Time Setup
-- [Any one-time configuration: timestamp source (RTC/NTP), SD card formatting, etc.]
-
----
 
 ## 6. Operating Instructions
 
