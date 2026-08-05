@@ -21,7 +21,7 @@ admin = blue) and get logged with a timestamp to the SD card.
 See [Workflow/fault-report-format.md](Workflow/fault-report-format.md) for what a
 fault report looks like and how faults are classified.
 
-See [Workflow/User Manual].(Workflow/User%20Manual) for full manual
+See [Workflow/User Manual](Workflow/User%20Manual) for full manual
 
 ## Firmware structure
 
