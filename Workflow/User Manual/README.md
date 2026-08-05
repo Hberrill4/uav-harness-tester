@@ -110,10 +110,10 @@ The Display will also show the location of the failure and its type. eg. Mismatc
 ### 6.3 Interpreting Results
 | Result Code | Color | Meaning | Typical Cause |
 |---|---|---|---|
-| OPEN | [red] | Expected connection not detected | Broken wire, bad crimp, unseated pin |
-| SHORT | [red] | Unexpected connection detected | Pinched insulation, solder bridge |
-| MISMATCH | [red] | Connection present but wrong pin/wire | Miswire, wrong harness variant |
-| PASS | [green] | Matches golden sample | — |
+| OPEN | red | Expected connection not detected | Broken wire, bad crimp, unseated pin |
+| SHORT | red | Unexpected connection detected | Pinched insulation, solder bridge |
+| MISMATCH | red | Connection present but wrong pin/wire | Miswire, wrong harness variant |
+| PASS | green | Matches golden sample | — |
 
 - How J1/J2 physical labels map to displayed fault locations
 Both a Fail and a Pass will be logged along with its test number. In the event of a fail all information about the fail will be logged like the type and location.
@@ -188,7 +188,7 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
   - *ACTIVE_WIRE_MASK* — identifies which wires, channels, or signal lines are currently active. Each bit in the mask typically represents one wire: a bit value of 1 means that wire is active, while 0 means it is inactive. This allows multiple active wires to be represented efficiently in a single value
 
 - **E. Support / contact**
-  - [Repo link: github.com/Hberrill4/uav-harness-tester]
+  - Repo link: github.com/Hberrill4/uav-harness-tester
 
 ---
 
