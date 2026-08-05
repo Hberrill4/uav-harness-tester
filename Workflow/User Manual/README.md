@@ -1,34 +1,26 @@
-# [Product Name] — User Guide
+# [UAV harness tester] — User Manual
 ### UAV Wire Harness Continuity Tester
 
 **Document version:** v0.1 (draft)
 **Date:** [YYYY-MM-DD]
-**Author:** [Your name]
+**Author:** [Harrison Berrill]
 **Firmware version this guide applies to:** [e.g. v1.0]
-
-> This is a **template**. Bracketed text (`[...]`) marks content to fill in. Section notes in *italics* explain what belongs there and why — delete the notes once the section is written.
-
----
 
 ## 1. Introduction
 
-*Orients a new reader in under a minute: what the device is, who it's for, what it is not.*
-
-- **Purpose:** One paragraph — what the tester does (verifies continuity across a wire harness against a known-good "golden sample," flags OPEN/SHORT/MISMATCH faults) and why it exists (replaces manual point-to-point ohmmeter checks).
-- **Intended audience:** [Assembly technicians / QA / yourself as sole operator]
-- **Scope:** What this guide covers vs. what it doesn't (e.g. firmware development and PCB design are covered separately in the repo's `docs/` folder, not here).
-- **Key features** (bullet list, 4–6 items):
+- **Purpose:** Verifies continuity across a wire harness against a known-good "golden sample" for up to 64 wires. flags OPEN/SHORT/MISMATCH faults and their location. It replaces manual time consuming point-to-point ohmmeter checks
+- **Intended audience:** Assembly technicians, Drone operators or anyone using a wire loom.
+- **Scope:** This Manual covers usage, troubleshooting and maintenance. The development of the product and code/firmware are covered separately in the repo.
+- **Key features:**
   - Full matrix scan across [N]×[N] wire matrix
   - Golden-sample capture and comparison
-  - Color-coded fault display (OPEN / SHORT / MISMATCH)
-  - Pass/fail/golden-sample status via RGB LED
+  - Color-coded display
+  - Open, Mismatch and Closed wire fault location
   - On-device result logging to SD card
 
 ---
 
 ## 2. Safety Information
-
-*This section exists to prevent hardware damage or injury — keep it near the front, not buried.*
 
 - Electrical precautions (max voltage/current on test leads, ESD handling for the ESP32-S3 and mux ICs)
 - Power source warnings (battery type, charging precautions if applicable)
@@ -57,10 +49,10 @@
 - Connector reference: J1 / J2 pinout — link to or summarize `docs/wiring-reference.md`
 
 ### 4.2 Controls
-| Control | Short Press | Long Press (5s hold) |
+| User Type | Short Press | Long Press (5s hold) |
 |---|---|---|
-| [Button 1 name] | [action] | [action] |
-| [Button 2 name] | [action] | [action] |
+| [Tester] | [Tests current wire harness] | [Switches to admin mode] |
+| [Button 2 name] | [Submits current harness as new golden sample] | [Switches to Tester mode] |
 
 ### 4.3 Indicators
 | Indicator | State | Meaning |
