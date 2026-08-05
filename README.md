@@ -54,3 +54,4 @@ fault report looks like and how faults are classified.
 
 - [Bill of Materials](/Workflow/Project-files/BOM%20for%20project.csv)
 - [Gant Chart](/Workflow/Project-files/Gant%20Chart.xlsx)
+- [Test pod BOM](/Workflow/Project-files/Test%20pod%20BOM.pptx)
