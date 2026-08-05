@@ -2,7 +2,7 @@
 
 **Status:** 🟡 In progress — schematic capture, prototype validated on breadboard
 
-This document covers the custom PCB design for the UAV wire harness
+This document covers the custom PCB design using the software KiCAD for the UAV wire harness
 continuity tester: an ESP32-S3-based instrument that tests all 64 wires of
 a UAV harness for continuity and fault conditions, logs results with
 timestamps, and displays outcomes on an onboard TFT via a single-button
