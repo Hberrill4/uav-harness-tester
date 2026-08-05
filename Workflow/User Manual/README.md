@@ -54,9 +54,9 @@
 ### 4.3 Indicators
 | Indicator | State | Meaning |
 |---|---|---|
-| RGB LED | Green | [Pass] |
-| RGB LED | Red | [Fail] |
-| RGB LED | [Blue] | [Golden sample mode] |
+| RGB LED | Green | Pass |
+| RGB LED | Red | Fail |
+| RGB LED | Blue | Golden sample mode |
 | Display | — | Shows live scan status and fault report, color-coded per mode (see 4.4) |
 
 *Note: GPIO48 (RGB LED) is shared with the onboard LED — cosmetic flicker during scans is expected, not a fault.*
@@ -66,7 +66,7 @@
 
 | Mode / Result | Display Color | What it means |
 |---|---|---|
-| Idle / standby | [neutral — e.g. white or gray text] | Waiting for a scan to start |
+| Idle / standby | white text] | Waiting for a scan to start |
 | Golden Sample Capture — menu | Cyan | Matrix scan ready to be submitted |
 | Golden Sample Capture — success | Blue | Sample stored; wire count shown |
 | Golden Sample Capture — failure | Red | 0 (or too few) wires detected — reseat harness and retry |
@@ -147,7 +147,9 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 
 | Symptom | Possible Cause | Fix |
 |---|---|---|
-| Device won't power on | [battery/power cause] | [fix] |
+| Device won't power on | GPIO0 pulled low at boot (forces download mode, looks like "won't boot") | Check nothing is shorting GPIO0 low at power-up; confirm BOOT button isn't stuck |
+| Device won't power on	| Onboard voltage regulator (5V/3.3V) failure |	Measure regulator output pins directly; if no output, regulator or its input caps may have failed
+| Device won't power on	| Short circuit on board (solder bridge, pinched wire) drawing excess current	| Disconnect load/peripherals one at a time; check for hot components; inspect under magnification for bridges
 | SD card error on first boot | `SPI.begin()` not called before SD access | Confirmed firmware fix applied (SPI now initialized before SD mount) — update firmware if still seen |
 | Display shows garbled or no output | Wrong display driver assumed, or wiring fault | Confirm hardware is the ILI9341 SPI TFT, not an I2C character LCD; check SPI wiring |
 | SD card or scan behaves erratically after golden sample capture | GPIO conflict (e.g. SD_CS sharing a pin with a sense-enable line) | Confirmed resolved in current pin map — verify you're on firmware with the de-conflicted `Config.h` |
