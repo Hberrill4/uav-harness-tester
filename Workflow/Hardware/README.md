@@ -8,6 +8,14 @@ The ESP32 is faster with more RAM/flash (good for future/industrial expansion) b
 
 Finally the ESP32 was preferred as it provided more internal RAM which would allow the 64x64 matrices to be accessed in this way and improve the speed of the system massively as well as ease of use.
 
+## Research: Existing Testers
+
+| Tester | Source | Notes |
+|---|---|---|
+| Tester 1 | [theseus.fi thesis](https://www.theseus.fi/bitstream/handle/10024/801631/Ech-charef_Rania.pdf) | Discusses how to measure resistance during the process |
+| Tester 2 | [hackaday.io – ArduWire Uno](https://hackaday.io/project/176753-arduwire-uno-low-voltage-cable-tester) | Uses a MUX/DEMUX 4067 IC to select pins, plus LEDs for a visual pass/fail indication; schematics provided, built around an Arduino Uno |
+| Tester 3 | [Griffith University repository](https://research-repository.griffith.edu.au/server/api/core/bitstreams/e0df58bc-e96a-434f-b30a-f2ac24138317/content) | Covers wire harness testing methodology with a flow chart of the testing process |
+
 ## Other Component Considerations
 - Was tough to find connecting cables that accommodated for a 64 wire harness so a decision was made to split it in half and use 2 idc rainbow ribbon cables inside of the modular test pod as they are already protected in that way and to use 2 DSsub connectors as the floating umbilical cords as these can withstand the daily usage and strain.  
 - I also looked at the screen and lcd screen being able to share SPI bus ports as this would then require less GPIO pins on the Arduino.  
