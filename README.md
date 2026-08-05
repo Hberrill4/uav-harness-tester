@@ -26,27 +26,27 @@ See [Workflow/User Manual](Workflow/User%20Manual) for full manual
 ## Firmware structure
 
 ### src/
-  - **Config.h**            All pin assignments, timing constants, wire count.
-                            File to edit hardware changes.
-  - **main.cpp**            Owns the state machine (normal/admin, test/capture)
-  - **ButtonManager.**      Non-blocking debounce + short-press vs 5s-hold detection
-  - **MuxController.**      Addresses any of the 64 wires across the drive/sense mux banks
-  - **ContinuityTester.**   Runs the full 64x64 connectivity scan
-  - **FaultAnalyzer.**      Classifies faults: OPEN / SHORT / MISMATCH, with location
-  - **WireMap.h**           Converts wire index -> connector+pin label (e.g. "J1-13")
-  - **DisplayManager.**     LCD + RGB
-  - **StorageManager.**     SD card logging + golden sample persistence
+- **[Config.h](src/Config.h)** — All pin assignments, timing constants, wire count. File to edit hardware changes.
+- **[main.cpp](src/main.cpp)** — Owns the state machine (normal/admin, test/capture)
+- **[ButtonManager](src/ButtonManager.)** — Non-blocking debounce + short-press vs 5s-hold detection
+- **[MuxController](src/MuxController.)** — Addresses any of the 64 wires across the drive/sense mux banks
+- **[ContinuityTester](src/ContinuityTester.)** — Runs the full 64×64 connectivity scan
+- **[FaultAnalyzer](src/FaultAnalyzer.)** — Classifies faults: OPEN / SHORT / MISMATCH, with location
+- **[WireMap.h](src/WireMap.h)** — Converts wire index → connector+pin label (e.g. "J1-13")
+- **[DisplayManager](src/DisplayManager.)** — LCD + RGB
+- **[StorageManager](src/StorageManager.)** — SD card logging + golden sample persistence
+
 ### Workflow/
-  - **wiring-reference.md**     Hardware assumptions baked into the code, pin mapping conventions
-  - **fault-report-format.md**  What fault reports look like and how they're generated
-  - **Assembly**                The process behind the prototype and how everything was made
-  - **Design-Architecture**     General system layout and how components interact and connect
-  - **Design-Enclosure**        Modular test pod and general box to use on a test bench and house the tester
-  - **Design-PCB**              PCB design process and final product
-  - **Hardware**                Components considered and finalized decisions
-  - **Images**                  Contains all images used in other folders
-  - **Project-files**           Contains all external files used
-  - **User Manual**             Full user manual for usage and maintanence/troubleshooting
+- **[wiring-reference.md](Workflow/wiring-reference.md)** — Hardware assumptions baked into the code, pin mapping conventions
+- **[fault-report-format.md](Workflow/fault-report-format.md)** — What fault reports look like and how they're generated
+- **[Assembly](Workflow/Assembly/)** — The process behind the prototype and how everything was made
+- **[Design-Architecture](Workflow/Design-Architecture/)** — General system layout and how components interact and connect
+- **[Design-Enclosure](Workflow/Design-Enclosure/)** — Modular test pod and enclosure for bench-top testing
+- **[Design-PCB](Workflow/Design-PCB/)** — PCB design process and final product
+- **[Hardware](Workflow/Hardware/)** — Components considered and finalized design decisions
+- **[Images](Workflow/Images/)** — Contains all images used throughout the documentation
+- **[Project-files](Workflow/Project-files/)** — Contains all external project files
+- **[User Manual](Workflow/User%20Manual/)** — Full user manual covering operation, maintenance, and troubleshooting
     
 **platformio.ini**            Build config (ESP32, Arduino framework)
 
