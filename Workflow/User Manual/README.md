@@ -169,12 +169,12 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 | Microcontroller | ESP32-S3-WROOM-1 (N8R8, Octal PSRAM) |
 | Display | ILI9341 SPI TFT |
 | Matrix size | [64×64 or actual configured size] |
-| Connectors | J1 / J2 — [type] |
-| Umbilical cable | [connector type, AWG, stranded] |
-| Power | [battery/voltage/current draw] |
+| Connectors | J1 / J2 - type depending on harnesses being tested |
+| Umbilical cable | D-Sub connector cable |
+| Power | USB-C |
 | Dimensions / weight | [ ] |
 | Operating temperature | [ ] |
-| Storage | microSD, [capacity supported] |
+| Storage | microSD, 8GB |
 
 ---
 
