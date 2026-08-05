@@ -7,20 +7,19 @@ this is the only file you should need to touch.
 ## Pins assigned
 
 **MUX SELECT LINES**
-
-PIN_DRIVE_S0   = 13;
-PIN_DRIVE_S1   = 12;
-PIN_DRIVE_S2   = 14;
-PIN_DRIVE_S3   = 15;
-PIN_DRIVE_SIG  = 1;
-PIN_DRIVE_EN[MUXES_PER_BANK] = {6, 7, 8, 9};
-
-PIN_SENSE_S0   = 16;
-PIN_SENSE_S1   = 17;
-PIN_SENSE_S2   = 5;
-PIN_SENSE_S3   = 18;
-PIN_SENSE_SIG  = 48;   // moved off GPIO46 (strapping pin)
-PIN_SENSE_EN[MUXES_PER_BANK] = {21, 10, 11, 38};
+| Connection | GPIO pin |
+| PIN_DRIVE_S0 | 13 |
+| PIN_DRIVE_S1 | 12 |
+| PIN_DRIVE_S2 | 14 |
+| PIN_DRIVE_S3 | 15 |
+| PIN_DRIVE_SIG | 1 |
+| PIN_DRIVE_EN[MUXES_PER_BANK] | {6, 7, 8, 9} |
+| PIN_SENSE_S0 | 16 |
+| PIN_SENSE_S1 | 17 |
+| PIN_SENSE_S2 | 5 |
+| PIN_SENSE_S3 | 18 |
+| PIN_SENSE_SIG | 48 // moved off GPIO46 (strapping pin) |
+| PIN_SENSE_EN[MUXES_PER_BANK] | {21, 10, 11, 38} |
 
 **SHARED SPI BUS (SD card + TFT, each with its own CS)**
 
