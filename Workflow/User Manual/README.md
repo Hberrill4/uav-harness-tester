@@ -33,15 +33,12 @@
 
 - [ ] Tester unit
 - [ ] Umbilical cable / connector to harness under test
-- [ ] [Charging cable / power adapter, if applicable]
-- [ ] [Quick start card]
+- [ ] USB-C cable
 - [ ] This guide
 
 ---
 
 ## 4. Product Overview
-
-*A labeled diagram here is worth more than paragraphs — plan to insert one (photo or SVG) with callouts.*
 
 ### 4.1 Physical Layout
 - [ ] Insert labeled photo/diagram showing: display, buttons, status LED, connector(s), SD card slot, power switch/port
@@ -96,37 +93,34 @@ The Display will also show the location of the failure and its type. eg. Mismatc
 
 ## 6. Operating Instructions
 
-*This is the core of the guide — write it as a numbered procedure a technician could follow without prior training.*
-
 ### 6.1 Capturing a Golden Sample
 1. Connect a **known-good, verified** harness to J1/J2.
-2. Hold [button name] for 5 seconds to enter Golden Sample Capture mode.
-3. The display shows **"CAPTURING…"** in **yellow** while the full matrix scan runs — do not disconnect the harness during this time.
-4. On success, the display turns **green**, shows the populated wire count (via `countPopulated()`), and the RGB LED flashes green to confirm.
-5. On failure (e.g. zero or unexpectedly few wires detected), the display turns **red** with a **"CAPTURE FAILED — RETRY"** message. Reseat the harness and repeat from step 2.
-6. The sample is written to the SD card as the reference for all future scans. [Confirm filename convention / whether a previous golden sample is overwritten or versioned.]
+2. Hold button for 5 seconds to enter Golden Sample Capture mode (Admin mode).
+3. The display turns **cyan** prompts to press the button again to conduct the scan.
+4. On success, the display turns **blue** and prompts to press the button again to return to admin screen.
+5. The sample is written to the SD card as the reference for all future scans and this new scan change is logged as such. A new golden sample being submitted overwrites the previous one.
+6. To exit the admin screen, follow the on screen instruction to hold button for 5 seconds.
 
 ### 6.2 Running a Continuity Test
 1. Connect the harness under test to J1/J2.
-2. Short-press [button name] to start a scan.
-3. The display shows **"SCANNING…"** in **yellow** for the duration of the matrix scan (a few seconds).
-4. Results populate the 20-column grid, one line per fault — or a single **"ALL PASS"** line in green if the harness matches the golden sample exactly.
+2. In tester mode Short-press button to start a scan.
+4. Results populate the 20-column grid, one line per fault — or a single **"PASS"** line in green if the harness matches the golden sample exactly.
 5. See 4.4 for the full color reference and 6.3 for what each result code means.
 
 ### 6.3 Interpreting Results
 | Result Code | Color | Meaning | Typical Cause |
 |---|---|---|---|
-| OPEN | [color] | Expected connection not detected | Broken wire, bad crimp, unseated pin |
-| SHORT | [color] | Unexpected connection detected | Pinched insulation, solder bridge |
-| MISMATCH | [color] | Connection present but wrong pin/wire | Miswire, wrong harness variant |
-| PASS | [color] | Matches golden sample | — |
+| OPEN | [red] | Expected connection not detected | Broken wire, bad crimp, unseated pin |
+| SHORT | [red] | Unexpected connection detected | Pinched insulation, solder bridge |
+| MISMATCH | [red] | Connection present but wrong pin/wire | Miswire, wrong harness variant |
+| PASS | [green] | Matches golden sample | — |
 
 - How J1/J2 physical labels map to displayed fault locations
-- What to do with a failed result (retest? log it? flag the harness?)
+Both a Fail and a Pass will be logged along with its test number. In the event of a fail all information about the fail will be logged like the type and location.
 
 ### 6.4 Saving / Exporting Results
 - [SD card file format and naming — see `docs/fault-report-format.md`]
-- [How to retrieve files — remove SD card, or on-device transfer method]
+- To retrieve logged data, remove the on board SD card from the ESP32 and plug it into a computer.
 - [SD write error behavior — what the user sees if a write fails, and what to do]
 
 ---
