@@ -4,18 +4,49 @@ All pin assignments live in a single place: `include/Config.h`. Nothing else
 in the codebase should hardcode a GPIO number — if you rewire something,
 this is the only file you should need to touch.
 
-## Assumptions baked into the current code
+## Pins assigned
 
-These need to be verified/adjusted against your actual schematic before
-first power-on:
+**MUX SELECT LINES**
 
-| Assumption | Where it matters | If wrong |
-|---|---|---|
-| Mux EN pins are **active-LOW** (74HC4067-style) | `MuxController::begin/selectDrive/selectSense` | Every wire will read "always open" or "always shorted" — invert the HIGH/LOW in those functions |
-| Drive/sense mux banks share select lines across all 4 muxes in a bank | `Config.h` pin tables | If your breakout wires select lines per-mux instead of shared, you'll need 16 select pins instead of 4 |
-| Sense pin uses internal pulldown, reads HIGH only when continuity exists | `MuxController::begin()` | If your sense circuit is wired differently (e.g. through a voltage divider or optocoupler), the polarity or threshold may need to change |
-| 2.8" SPI ILI9341 TFT on `PIN_TFT_CS`/`PIN_TFT_DC`/`PIN_TFT_RST` | `DisplayManager` + `Config.h` | Wrong CS/DC/RST wiring = blank or garbled screen; verify against the pin table in `Config.h` and check SPI continuity with a multimeter |
-| SD card on hardware SPI, single CS pin | `Config.h` (`PIN_SD_CS`) | If using a different SPI bus or a card reader with extra pins, adjust `StorageManager::begin()` |
+PIN_DRIVE_S0   = 13;
+PIN_DRIVE_S1   = 12;
+PIN_DRIVE_S2   = 14;
+PIN_DRIVE_S3   = 15;
+PIN_DRIVE_SIG  = 1;
+PIN_DRIVE_EN[MUXES_PER_BANK] = {6, 7, 8, 9};
+
+PIN_SENSE_S0   = 16;
+PIN_SENSE_S1   = 17;
+PIN_SENSE_S2   = 5;
+PIN_SENSE_S3   = 18;
+PIN_SENSE_SIG  = 48;   // moved off GPIO46 (strapping pin)
+PIN_SENSE_EN[MUXES_PER_BANK] = {21, 10, 11, 38};
+
+**SHARED SPI BUS (SD card + TFT, each with its own CS)**
+
+PIN_SPI_SCK   = 19;
+PIN_SPI_MOSI  = 20;
+PIN_SPI_MISO  = 47;
+
+**SD CARD (SPI)**
+
+PIN_SD_CS = 39;
+
+**TFT DISPLAY (2.8" ILI9341, SPI)**
+
+PIN_TFT_CS  = 40;
+PIN_TFT_DC  = 41;
+PIN_TFT_RST = 42;
+
+// STATUS RGB LED (discrete LED, separate from the onboard addressable one)
+// ---------------------------------------------------------------------------
+static const uint8_t PIN_LED_R = 2;
+static const uint8_t PIN_LED_G = 0;    // strapping pin; safe as an OUTPUT
+static const uint8_t PIN_LED_B = 3;    // strapping pin; safe as an OUTPUT
+
+// GPIO46 intentionally left unassigned - see notes above.
+
+
 
 ## Wire numbering convention
 
