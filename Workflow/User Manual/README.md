@@ -180,22 +180,15 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 
 ## 11. Appendix
 
-- **A. Full pinout / wiring reference** — link to `docs/wiring-reference.md`
-- **B. Fault report file format** — link to `docs/fault-report-format.md`
+- **A. Full pinout / wiring reference** — [Workflow/wiring-referance.md](Workflow/wiring-referance.md)
+- **B. Fault report file format** — [Workflow/fault-report-format.md](Workflow/fault-report-format.md)
 - **C. Glossary**
   - *Golden Sample* — a verified-good harness scan used as the reference for pass/fail comparison
-  - *OPEN / SHORT / MISMATCH* — [as defined above]
-  - *ACTIVE_WIRE_MASK* — [brief plain-language definition, no need to expose internals unless this guide is for technical users]
-- **D. Revision history**
-
-| Version | Date | Changes |
-|---|---|---|
-| v0.1 | [date] | Initial draft |
+  - *OPEN / SHORT / MISMATCH* — as defined above
+  - *ACTIVE_WIRE_MASK* — identifies which wires, channels, or signal lines are currently active. Each bit in the mask typically represents one wire: a bit value of 1 means that wire is active, while 0 means it is inactive. This allows multiple active wires to be represented efficiently in a single value
 
 - **E. Support / contact**
   - [Repo link: github.com/Hberrill4/uav-harness-tester]
-  - [Contact info, if applicable]
 
 ---
 
-*Template notes for you (delete before publishing): Sections 6 and 9 are the ones worth writing first and testing against a real user — everything else can stay skeletal until firmware and enclosure design settle. Once you've decided on the timestamp source and SD error behavior, section 6.4 and the troubleshooting table should get updated to match.*
