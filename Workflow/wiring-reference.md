@@ -23,21 +23,27 @@ this is the only file you should need to touch.
 | `PIN_SENSE_SIG` | 48 | Moved off GPIO46 (strapping pin) |
 | `PIN_SENSE_EN[0..3]` | 21, 10, 11, 38 | |
 
-**SHARED SPI BUS (SD card + TFT, each with its own CS)**
+### Shared SPI Bus (SD card + TFT, each with its own CS)
 
-PIN_SPI_SCK   = 19;
-PIN_SPI_MOSI  = 20;
-PIN_SPI_MISO  = 47;
+| Connection | GPIO Pin | Notes |
+|---|---|---|
+| `PIN_SPI_SCK` | 19 | |
+| `PIN_SPI_MOSI` | 20 | |
+| `PIN_SPI_MISO` | 47 | |
 
-**SD CARD (SPI)**
+### SD Card (SPI)
 
-PIN_SD_CS = 39;
+| Connection | GPIO Pin | Notes |
+|---|---|---|
+| `PIN_SD_CS` | 39 | |
 
-**TFT DISPLAY (2.8" ILI9341, SPI)**
+### TFT Display (2.8" ILI9341, SPI)
 
-PIN_TFT_CS  = 40;
-PIN_TFT_DC  = 41;
-PIN_TFT_RST = 42;
+| Connection | GPIO Pin | Notes |
+|---|---|---|
+| `PIN_TFT_CS` | 40 | |
+| `PIN_TFT_DC` | 41 | |
+| `PIN_TFT_RST` | 42 | |
 
 // STATUS RGB LED (discrete LED, separate from the onboard addressable one)
 // ---------------------------------------------------------------------------
