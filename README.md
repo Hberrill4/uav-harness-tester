@@ -28,13 +28,13 @@ See [Workflow/User Manual](Workflow/User%20Manual) for full manual
 ### src/
 - **[Config.h](src/Config.h)** — All pin assignments, timing constants, wire count. File to edit hardware changes.
 - **[main.cpp](src/main.cpp)** — Owns the state machine (normal/admin, test/capture)
-- **[ButtonManager](src/ButtonManager.)** — Non-blocking debounce + short-press vs 5s-hold detection
-- **[MuxController](src/MuxController.)** — Addresses any of the 64 wires across the drive/sense mux banks
-- **[ContinuityTester](src/ContinuityTester.)** — Runs the full 64×64 connectivity scan
-- **[FaultAnalyzer](src/FaultAnalyzer.)** — Classifies faults: OPEN / SHORT / MISMATCH, with location
+- **[ButtonManager.h](src/ButtonManager.h)** — Non-blocking debounce + short-press vs 5s-hold detection
+- **[MuxController](src/MuxController.h)** — Addresses any of the 64 wires across the drive/sense mux banks
+- **[ContinuityTester](src/ContinuityTester.h)** — Runs the full 64×64 connectivity scan
+- **[FaultAnalyzer](src/FaultAnalyzer.h)** — Classifies faults: OPEN / SHORT / MISMATCH, with location
 - **[WireMap.h](src/WireMap.h)** — Converts wire index → connector+pin label (e.g. "J1-13")
-- **[DisplayManager](src/DisplayManager.)** — LCD + RGB
-- **[StorageManager](src/StorageManager.)** — SD card logging + golden sample persistence
+- **[DisplayManager](src/DisplayManager.h)** — LCD + RGB
+- **[StorageManager](src/StorageManager.h)** — SD card logging + golden sample persistence
 
 ### Workflow/
 - **[wiring-reference.md](Workflow/wiring-reference.md)** — Hardware assumptions baked into the code, pin mapping conventions
