@@ -51,8 +51,8 @@
 ### 4.2 Controls
 | User Type | Short Press | Long Press (5s hold) |
 |---|---|---|
-| [Tester] | [Tests current wire harness] | [Switches to admin mode] |
-| [Button 2 name] | [Submits current harness as new golden sample] | [Switches to Tester mode] |
+| Tester | Tests current wire harness | Switches to admin mode |
+| Admin | Submits current harness as new golden sample | Switches to Tester mode |
 
 ### 4.3 Indicators
 | Indicator | State | Meaning |
