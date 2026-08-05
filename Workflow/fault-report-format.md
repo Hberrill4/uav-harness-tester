@@ -18,8 +18,8 @@
   per test run:
 
   ```
-  timestamp,result,faults
-  1737654321,FAIL,OPEN:J1-12;SHORT:J1-5-J2-9;MISWIRE:J1-20-J2-1
+  timestamp,test number,result,faults
+  1737654321,23,FAIL,OPEN:J1-12;SHORT:J1-5-J2-9;MISWIRE:J1-20-J2-1
   1737654890,PASS,
   ```
 
@@ -29,7 +29,7 @@ Every test compares the live 64x64 connectivity scan against an "expected"
 matrix:
 
 - If a **golden sample** has been captured (admin mode), that becomes the
-  expected matrix.
+  expected matrix and is the change is logged on the SD.
 - Otherwise, the firmware assumes a straight-through harness (wire N should
   only ever reach pin N) — see `ContinuityTester::identityExpectation()`.
 
