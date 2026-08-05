@@ -43,10 +43,8 @@ fault report looks like and how faults are classified.
   - **Design-PCB**              PCB design process and final product
   - **Hardware**                Components considered and finalized decisions
   - **Images**                  Contains all images used in other folders
-  - **Manufacture**
   - **Project-files**           Contains all external files used
-  - **Research-existing-testers**  Initial research to form own basis and understanding
-  - **Testing-validation**       Different dilemmas encountered and problems considered including their solutions. Also involves product testing and validating.
+  - **User Manual**             Full user manual for usage and maintanence/troubleshooting
     
 **platformio.ini**            Build config (ESP32, Arduino framework)
 
