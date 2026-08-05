@@ -16,7 +16,7 @@ Finally the ESP32 was preferred as it provided more internal RAM which would all
 - A rotary encoder was originally looked at to be able to scroll through options but a single push button was decided upon as this would be far more user friendly and be able to easily be mounted on the modular test pod and only require one user input.  
 - Headers would also be required to connect to the DSub cables off the PCB.
 
-## Final Hardware
+## Final Core Hardware
 
 **Microcontroller:** ESP32-S3-DEV-KIT-NXRX - 45 changeable GPIO, 4 SPI, 3 UART, 2 I2C, 240 MHz clock, 8 MB flash, 512 KB SRAM, 384 KB ROM, 3.3 V logic.
 
@@ -30,5 +30,5 @@ Finally the ESP32 was preferred as it provided more internal RAM which would all
 
 **Test pod connectors:** High Speed Data Transfer Cord DB37 Data Cable Wire D-Sub 37Pin
 
-**Bom is provided below:**  
+**Total Bom is provided below:**  
 [Bill of Materials](docs/project-files/BOM%20for%20project.csv)
