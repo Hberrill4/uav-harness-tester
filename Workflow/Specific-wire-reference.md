@@ -6,7 +6,6 @@
 |    GND          |  Black |
 
 ### S2
-
 | Connection Type | Colour | Wire Reference |
 |------------------|--------|-----------------|
 |                  |        |                 |
@@ -14,7 +13,6 @@
 |                  |        |                 |
 
 ### S3
-
 | Connection Type | Colour | Wire Reference |
 |------------------|--------|-----------------|
 |                  |        |                 |
