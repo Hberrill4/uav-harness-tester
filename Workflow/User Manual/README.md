@@ -180,7 +180,7 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 
 ## 11. Appendix
 
-- **A. Full pinout / wiring reference** — [Workflow/wiring-referance.md](Workflow/wiring-referance.md)
+- **A. Full pinout / wiring reference** — [Workflow/wiring-referance.md](Workflow/wiring-reference.md)
 - **B. Fault report file format** — [Workflow/fault-report-format.md](Workflow/fault-report-format.md)
 - **C. Glossary**
   - *Golden Sample* — a verified-good harness scan used as the reference for pass/fail comparison
