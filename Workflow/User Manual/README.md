@@ -136,10 +136,10 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 
 ## 8. Maintenance & Storage
 
-- Cleaning (connector contacts, display)
-- Storage conditions (temperature, humidity, connector caps)
-- Battery care, if applicable (storage charge level, cycle life)
-- Firmware update procedure (if field-updatable): [steps or link to repo instructions]
+- Cleaning: Dry compressed air or a soft brush on the SD card slot and exposed connector pins (mux inputs, umbilical connector); isopropyl alcohol on a lint-free cloth for the ILI9341 display, avoid pressure on the glass.
+- Storage conditions: Cool, dry, away from direct sun (ILI9341 contrast can degrade above ~60°C); keep the umbilical connector capped when detached to protect the conductors from oxidation/damage.
+- Power: USB-C powered only, no onboard battery. No charge-cycle or storage-charge considerations — just avoid leaving the USB-C port exposed to dust/moisture when not connected.
+- Firmware update procedure: Connect the ESP32-S3 via USB-C, pull the latest from github.com/Hberrill4/uav-harness-tester, then flash with pio run -t upload (or the Upload button in PlatformIO/VS Code).
 
 ---
 
