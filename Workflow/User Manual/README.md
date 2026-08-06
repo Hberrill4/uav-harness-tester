@@ -127,10 +127,7 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 
 ## 7. Menu & Display Navigation
 
-*Only needed if there's more than one screen/mode. A simple state diagram helps here.*
-
-- [ ] Insert flow diagram: Idle → Golden Sample Capture → Test Scan → Results → (repeat)
-- Description of each screen/state and how to move between them
+![General operating process diagram](https://raw.githubusercontent.com/Hberrill4/uav-harness-tester/main/Workflow/images/general%20operating%20process.jpg)
 
 ---
 
