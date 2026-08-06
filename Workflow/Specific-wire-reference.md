@@ -1,5 +1,4 @@
 ### S1
-
 | Connection Type | Colour | Wire Reference |
 |-----------------|--------|----------------|
 |    PPM          |  White |                |
