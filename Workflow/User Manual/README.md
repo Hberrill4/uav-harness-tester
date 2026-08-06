@@ -115,7 +115,7 @@ The Display will also show the location of the failure and its type. eg. Mismatc
 | MISMATCH | red | Connection present but wrong pin/wire | Miswire, wrong harness variant |
 | PASS | green | Matches golden sample | — |
 
-- How J1/J2 physical labels map to displayed fault locations
+See [Specific-wire-reference](Workflow/Specific-wire-reference.md) for interpretation of results displayed in this circumstance
 Both a Fail and a Pass will be logged along with its test number. In the event of a fail all information about the fail will be logged like the type and location.
 
 ### 6.4 Saving / Exporting Results
