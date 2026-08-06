@@ -121,7 +121,6 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 ### 6.4 Saving / Exporting Results
 - When the SD card if full, damaged or fails to log an error message will appear until the error is corrected or esp32 is reset.
 - To retrieve logged data, remove the on board SD card from the ESP32 and plug it into a computer.
-- [SD write error behavior — what the user sees if a write fails, and what to do]
 
 ---
 
