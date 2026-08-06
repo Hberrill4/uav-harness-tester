@@ -119,7 +119,7 @@ The Display will also show the location of the failure and its type. eg. Mismatc
 Both a Fail and a Pass will be logged along with its test number. In the event of a fail all information about the fail will be logged like the type and location.
 
 ### 6.4 Saving / Exporting Results
-- [SD card file format and naming — see `docs/fault-report-format.md`]
+- When the SD card if full, damaged or fails to log an error message will appear until the error is corrected or esp32 is reset.
 - To retrieve logged data, remove the on board SD card from the ESP32 and plug it into a computer.
 - [SD write error behavior — what the user sees if a write fails, and what to do]
 
