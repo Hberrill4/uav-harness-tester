@@ -57,3 +57,4 @@ See [Workflow/User Manual](Workflow/User%20Manual) for full manual
 - [Bill of Materials](/Workflow/Project-files/BOM%20for%20project.csv)
 - [Gant Chart](/Workflow/Project-files/Gant%20Chart.xlsx)
 - [Test pod BOM](/Workflow/Project-files/Test%20pod%20BOM.pptx)
+- [Adaptor BOM](/Workflow/Project-files/Adaptor%20BOM.pptx)
