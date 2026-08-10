@@ -23,7 +23,7 @@ fault report looks like and how faults are classified.
 
 See [Workflow/User Manual](Workflow/User%20Manual) for full manual
 
-## Firmware structure
+## Table of contents
 
 ### src/
 - **[Config](src/Config.h)** — All pin assignments, timing constants, wire count. File to edit hardware changes.
