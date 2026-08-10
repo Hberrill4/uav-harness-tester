@@ -81,7 +81,7 @@ static const uint8_t PIN_LED_R = 2;
 static const uint8_t PIN_LED_G = 0;    // strapping pin; safe as an OUTPUT
 static const uint8_t PIN_LED_B = 3;    // strapping pin; safe as an OUTPUT
 
-// GPIO19, GPIO20, GPIO46 intentionally left unassigned - see notes above.
+// GPIO46 intentionally left unassigned - see notes above.
 
 // ---------------------------------------------------------------------------
 // FILES
