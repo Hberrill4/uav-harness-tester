@@ -115,7 +115,7 @@ Testing a live harness will exceed the TVS diode's 5 V standoff rating and can d
 
 | Mode / Result | Display Color | What it means |
 |---|---|---|
-| Idle / standby | white text] | Waiting for a scan to start |
+| Idle / standby | white text | Waiting for a scan to start |
 | Golden Sample Capture — menu | Cyan | Matrix scan ready to be submitted |
 | Golden Sample Capture — success | Blue | Sample stored; wire count shown |
 | Golden Sample Capture — failure | Red | 0 (or too few) wires detected — reseat harness and retry |
@@ -211,21 +211,21 @@ Both a Fail and a Pass will be logged along with its test number. In the event o
 
 | Spec | Value |
 |---|---|
-| Microcontroller | ESP32-S3-WROOM-1 (N8R8, Octal PSRAM) |
+| Microcontroller | ESP32-S3-WROOM-1 (N16R8, Octal PSRAM) |
 | Display | ILI9341 SPI TFT |
 | Matrix size | [64×64 or actual configured size] |
 | Connectors | J1 / J2 - type depending on harnesses being tested |
 | Umbilical cable | D-Sub connector cable |
 | Power | USB-C |
 | Dimensions / weight | [ ] |
-| Operating temperature | [ ] |
+| Operating temperature | [10–60 °C, cable-limited] |
 | Storage | microSD, 8GB |
 
 ---
 
 ## 11. Appendix
 
-- **A. Full pinout / wiring reference** — [Workflow/wiring-referance.md](Workflow/wiring-reference.md)
+- **A. Full pinout / wiring reference** — [Workflow/wiring-reference.md](Workflow/wiring-reference.md)
 - **B. Fault report file format** — [Workflow/fault-report-format.md](Workflow/fault-report-format.md)
 - **C. Glossary**
   - *Golden Sample* — a verified-good harness scan used as the reference for pass/fail comparison
