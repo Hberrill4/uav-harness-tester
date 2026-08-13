@@ -21,11 +21,60 @@
 
 ## 2. Safety Information
 
-- Electrical precautions (max voltage/current on test leads, ESD handling for the ESP32-S3 and mux ICs)
-- Power source warnings (battery type, charging precautions if applicable)
-- Do not test energized/live harnesses — [confirm and state clearly if this applies]
-- Handling precautions for the umbilical cable and connectors (bend radius, strain relief)
-- Environmental limits (operating temperature, humidity, ingress rating if any)
+### 2.1 ⚡ Electrical Precautions
+
+- **Test lead voltage/current limits:** This tester is a **passive continuity tester only** — it applies a low-voltage sense signal (3.3 V logic level from the ESP32-S3) through the mux network to detect open/short/mismatch conditions. It does not source test voltage/current beyond this. Do not connect the DC37 test leads to any harness, wire bundle, or circuit that carries its own voltage source.
+
+- **TVS diode rating (`ESDR0524SMUTAG`):** Each mux input is protected by an `ESDR0524SMUTAG` dual/quad-element TVS array with a **5 V reverse standoff voltage** and a **5.5–6 V breakdown voltage**. Under ESD transient conditions the clamping voltage can reach up to **15 V max** — this is a *transient protection* spec, not a sustained-voltage rating.
+
+  > ⚠️ **Treat 5 V as the absolute ceiling** for any voltage present on a wire under test. This protection exists for ESD events, not for testing energized circuits — see [2.3](#23--do-not-test-energizedlive-harnesses).
+
+- **ESD handling — ESP32-S3 and mux ICs:** The ESP32-S3-WROOM-1 module and CD74HC4067 muxes are CMOS devices vulnerable to static discharge.
+  - Use an anti-static wrist strap or mat when handling the bare PCB, especially before full assembly.
+  - Store the assembled tester in an anti-static bag when not in use.
+  - Handle by PCB edges or connector shells — avoid touching mux input pins or the WROOM module pins directly.
+
+<small>TVS diodes: onsemi `ESDR0524SMUTAG`, U-DFN2510, 4-element common anode.</small>
+
+---
+
+### 2.2 🔌 Power Source Warnings
+
+- **Power input:** The tester is powered exclusively via **USB** through the ESP32-S3-DevKitC. There is no battery in the design — no charging precautions apply.
+- Use only a USB cable and power source rated for the ESP32-S3's requirements (5 V, standard USB current limits). Do not use damaged USB cables or connectors.
+- Disconnect USB power before making or breaking connections at the DC37 connectors or any exposed header.
+
+---
+
+### 2.3 🚫 Do Not Test Energized/Live Harnesses
+
+> **This applies, without exception.**
+
+The tester is designed exclusively for continuity/open/short/mismatch testing on **de-energized, unpowered wire harnesses**. Before every test session, confirm:
+
+- [ ] The harness under test is fully disconnected from any UAV battery, ESC, flight controller power rail, or other voltage source.
+- [ ] No capacitors in the harness (e.g., on ESC inputs) retain residual charge — allow bleed-down time or discharge safely first.
+- [ ] Never connect the DC37 umbilical to a harness still mounted in a powered-on airframe.
+
+Testing a live harness will exceed the TVS diode's 5 V standoff rating and can damage the mux ICs, the ESP32-S3, or the harness itself.
+
+---
+
+### 2.4 🔗 Umbilical Cable & Connector Handling
+
+- **Cable:** RND `765-00044`, male–male 37-pin D-Sub, 1 m. No manufacturer bend-radius spec is published for this cable — as a conservative general D-Sub cable practice, avoid bends tighter than **~8× cable OD**, and never bend sharply right at the connector backshell.
+- **Temperature range:** The cable/connector assembly is rated **10 °C to 60 °C** per the manufacturer datasheet — this becomes the practical environmental ceiling/floor for the whole tester (see [2.5](#25--environmental-limits)), since it's the most restrictive component.
+- **Strain relief:** Support the cable at the D-Sub shell, not at the pins. Anchor a strain-relief boot or cable tie to the enclosure rather than the connector shell itself.
+- Mate/unmate D-Sub connectors straight-on — never at an angle — to avoid bending pins.
+- Inspect D-Sub pins for bend or recession before each test session.
+
+<small>Cable: RND 765-00044, 37-pin D-Sub M–M, 1 m, grey jacket, RoHS.</small>
+
+---
+
+### 2.5 🌡️ Environmental Limits
+
+- **Operating temperature:** **10 °C to 60 °C**, set by the D-Sub umbilical cable rating (the limiting component — the TVS diodes are rated to −55 °C to +125 °C, well beyond this).
 
 ---
 
