@@ -38,5 +38,6 @@ Finally the ESP32 was preferred as it provided more internal RAM which would all
 
 **Test pod connectors:** High Speed Data Transfer Cord DB37 Data Cable Wire D-Sub 37Pin
 
-**Total Bom is provided below:**  
-[Bill of Materials](docs/project-files/BOM%20for%20project.csv)
+
+**Total Bom for test pod is provided below:**  
+[Bill of Materials](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/Project-files/Test%20pod%20BOM.pptx)
