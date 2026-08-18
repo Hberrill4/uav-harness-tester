@@ -76,6 +76,7 @@ Local high-frequency decoupling, placed as close as possible to IC power pins. I
 -  Run DRC
 -  Inspect in 3D
 -  Final review against schematic
+  
 Final Test pod PCB is shown here: 
 
 **A breadboard prototype was built and validated first** — see
