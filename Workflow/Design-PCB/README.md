@@ -5,6 +5,10 @@ This document covers the custom PCB design using the software KiCAD for the UAV 
 
 See the [main README](../../README.md) for the full project overview and [`Workflow/Hardware`](../Hardware/) for the core hardware review that shaped these decisions and [Test pod Bill of Materials](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/Project-files/Test%20pod%20BOM.pptx) for the full list of test pod hardware used and [Adaptor pod Bill of Materials](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/Project-files/Adaptor%20BOM.pptx) for full list of adaptor hardware. Each PCB contains components of their respective BOM.
 
+Final Test Pod Schematic: [Active PCB Schematic](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/Project-files/Active%20PCB%20schematic)
+
+Final Test Pod PCB:
+
 ---
 
 ## Architecture at a glance
@@ -76,8 +80,7 @@ Local high-frequency decoupling, placed as close as possible to IC power pins. I
 -  Run DRC
 -  Inspect in 3D
 -  Final review against schematic
-  
-Final Test pod PCB is shown here: 
+   
 
 **A breadboard prototype was built and validated first** — see
 [`../Assembly/`](../Assembly/) for the bring-up log — before committing
