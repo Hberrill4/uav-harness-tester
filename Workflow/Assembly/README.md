@@ -78,8 +78,7 @@ Sense bank (first chip only):
 - [ ] Flash Microcontroller
 - [ ] Connect wires between MUXs and scan as golden sample
 - [ ] Return to test screen to then test same wire and confirm it passes and is displayed:[Pass evidence](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/images/IMG_8664.MOV)
-)
-- [ ] Disconnect one wire and switch two wires around to confirm open and crossed wire fault detection:[Fail evidence](Workflow/images/IMG_8665.MOV)
+- [ ] Disconnect one wire and switch two wires around to confirm open and crossed wire fault detection:[Fail evidence](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/images/IMG_8665.MOV)
 
 
 ## Phase 6 — Scale to all 8 muxes
