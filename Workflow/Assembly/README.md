@@ -1,5 +1,5 @@
 # UAV Harness Tester — Prototype Build Guide
-### (using the real `Config.h` — Waveshare ESP32-S3-DEV-KIT-N8R8)
+### (using the real `Config.h` — Waveshare ESP32-S3-DEV-KIT-N16R8)
 
 
 ## Phase 1 — Power and ground
@@ -75,13 +75,11 @@ Sense bank (first chip only):
 
 - [ ] Wired just these two chips: shared S0-S3 address lines within each
   bank, separate EN lines.
-- [ ] Flash `MuxController` + `ContinuityTester` in a reduced mode
-- [ ] Bridge a single jumper wire between one drive channel and one sense
-  channel and confirm the firmware reports continuity correctly, and
-  reports open on all other channel combinations.
+- [ ] Flash Microcontroller
+- [ ] Connect wires between MUXs and scan as golden sample
+- [ ] Return to test screen to then test same wire and confirm it passes and is displayed:[Pass evidence](Workflow/images/IMG_8664.MOV)
+- [ ] Disconnect one wire and switch two wires around to confirm open and crossed wire fault detection:[Fail evidence](Workflow/images/IMG_8665.MOV)
 
-Once one drive/sense pair is verified, the remaining 6 muxes are just repetition of a known-good
-pattern.
 
 ## Phase 6 — Scale to all 8 muxes
 
