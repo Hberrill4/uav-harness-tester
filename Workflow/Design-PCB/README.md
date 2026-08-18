@@ -2,13 +2,9 @@
 
 **Status:** 🟡 In progress — schematic capture, prototype validated on breadboard
 
-This document covers the custom PCB design using the software KiCAD for the UAV wire harness
-continuity tester: an ESP32-S3-based instrument that tests all 64 wires of
-a UAV harness for continuity and fault conditions, logs results with
-timestamps, and displays outcomes on an onboard TFT via a single-button
-interface. See the [main README](../../README.md) for the full project
-overview and [`Workflow/Hardware`](../Hardware/) for the hardware review
-that shaped these decisions and [Bill of Materials](/Workflow/Project-files/BOM%20for%20project.csv) for the full list of hardware used.
+This document covers the custom PCB design using the software KiCAD for the UAV wire harness continuity tester: an ESP32-S3-based instrument that tests all 64 wires of a UAV harness for continuity and fault conditions, logs results with timestamps, and displays outcomes on an onboard TFT via a single-button interface.
+
+See the [main README](../../README.md) for the full project overview and [`Workflow/Hardware`](../Hardware/) for the core hardware review that shaped these decisions and [Test pod Bill of Materials](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/Project-files/Test%20pod%20BOM.pptx) for the full list of test pod hardware used and [Adaptor pod Bill of Materials](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/Project-files/Adaptor%20BOM.pptx) for full list of adaptor hardware. Each PCB contains components of their respective BOM.
 
 ---
 
