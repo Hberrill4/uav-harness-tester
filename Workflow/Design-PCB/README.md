@@ -1,6 +1,5 @@
 # PCB Design
 
-**Status:** 🟡 In progress — schematic capture, prototype validated on breadboard
 
 This document covers the custom PCB design using the software KiCAD for the UAV wire harness continuity tester: an ESP32-S3-based instrument that tests all 64 wires of a UAV harness for continuity and fault conditions, logs results with timestamps, and displays outcomes on an onboard TFT via a single-button interface.
 
@@ -38,7 +37,7 @@ See the [main README](../../README.md) for the full project overview and [`Workf
   connect/disconnect cycles
 
 **Electrical**
-- 5V input, 3.3V logic, SPI for TFT/SD, multiplexer channel switching
+- USB-C input, 3.3V logic, SPI for TFT/SD, multiplexer channel switching
 - Protection on all ESP32-facing measurement inputs
 
 **A breadboard prototype was built and validated first** — see
@@ -46,7 +45,30 @@ See the [main README](../../README.md) for the full project overview and [`Workf
 to PCB layout.
 
 ## Schematics
-KiCAD was used to route all traces. Although a decision was made to mount the hardware components ourselves it was key to ensure the right components were selected in KiCAD to maintain the same dimensions and pin There additional software like espressif was downloaded to ensure such accuracy could be maintained.
+KiCAD was used to route all traces. Although a decision was made to mount the hardware components ourselves it was key to ensure the right components were selected in KiCAD to maintain the same dimensions and pin outs. Additional software like espressif was downloaded to ensure such accuracy could be maintained.
+
+## Circuit protection
+
+| Component | Description | Part Number | Qty | Unit Price | Supplier |
+|---|---|---|---|---|---|
+| 10 µF Electrolytic Capacitor | SMD Aluminium Electrolytic Capacitor, Radial Can, 10 µF, 16V | MCESL16V106M4X5.2 | 9 | £1.68 | [Farnell](https://uk.farnell.com/multicomp-pro/mcesl16v106m4x5-2/cap-10-f-16v-radial-smd/dp/9265686) |
+| 10 kΩ Resistor (0805) | Yageo RT 10 kΩ, 0805 Thin Film SMD Resistor | RT0805FRE0710KL | 8 | £0.24 | [RS Online](https://uk.rs-online.com/web/p/surface-mount-resistors/1985686) |
+| TVS Diode (4-channel) | ESD Protection Diode Array, 4 CHAN, Low Capacitance | ESDR0524SMUTAG | 32 | £10.66 | [Mouser](https://www.mouser.co.uk/en/ProductDetail/onsemi/ESDR0524SMUTAG) |
+| 0.1 µF Decoupling Capacitor (0402) | 0.1 µF ±10% 50V Ceramic Capacitor, X7R | GCM155R71H104KE02J | 10 | £0.26 | [Digi-Key](https://www.digikey.co.uk/en/products/detail/murata-electronics/GCM155R71H104KE02J/4903705) |
+
+### TVS Diode — ESDR0524SMUTAG
+The primary ESD/transient protection device on the board. Each package contains 4 low-capacitance channels, clamping voltage spikes on signal lines to a safe level whenever the external wiring harness is connected or disconnected — the most likely source of electrostatic discharge into the sense/mux lines. The low-capacitance rating matters here because it protects the matrix scan lines without materially loading them or slowing signal edges.
+
+### 10 µF Electrolytic Capacitor — MCESL16V106M4X5.2
+Bulk reservoir capacitance. It provides a low-impedance path to absorb and dump the energy from any transient a TVS diode clamps, and smooths lower-frequency ripple on the rail — complementing the fast, small-value ceramics rather than replacing them. The 16V rating gives comfortable headroom above the logic/supply rail it's protecting.
+
+### 10 kΩ Resistor — RT0805FRE0710KL
+Used as a pull-up/pull-down or bias resistor on the protected lines, holding them at a defined logic level when nothing is actively driving them (e.g. before a harness is connected). This prevents floating inputs from producing false continuity/fault readings, working alongside the TVS clamping.
+
+### 0.1 µF Decoupling Capacitor — GCM155R71H104KE02J
+Local high-frequency decoupling, placed as close as possible to IC power pins. It filters fast switching noise and supplies instantaneous current during transients, keeping the supply rail stable — standard practice paired with the bulk electrolytic above.
+
+
 
 ## Design workflow
 
