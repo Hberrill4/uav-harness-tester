@@ -65,17 +65,18 @@ Local high-frequency decoupling, placed as close as possible to IC power pins. I
 
 ## Design workflow
 
-- [x] Draft schematic — measurement circuit, power flags, net labels, test points, decoupling
-- [x] Run ERC and resolve until clean
-- [ ] Assign footprints and verify against datasheets
-- [ ] Get schematic reviewed and approved
-- [ ] Import schematic into PCB editor
-- [ ] Arrange components — wide power traces, digital/analog separation
-- [ ] Route traces
-- [ ] Add ground plane
-- [ ] Run DRC
-- [ ] Inspect in 3D
-- [ ] Final review against schematic
+-  Draft schematic — measurement circuit, power flags, net labels, test points, decoupling
+-  Run ERC and resolve until clean
+-  Assign footprints and verify against datasheets
+-  Get schematic reviewed and approved
+-  Import schematic into PCB editor
+-  Arrange components — wide power traces, digital/analog separation
+-  Route traces
+-  Add ground plane
+-  Run DRC
+-  Inspect in 3D
+-  Final review against schematic
+Final Test pod PCB is shown here: 
 
 **A breadboard prototype was built and validated first** — see
 [`../Assembly/`](../Assembly/) for the bring-up log — before committing
