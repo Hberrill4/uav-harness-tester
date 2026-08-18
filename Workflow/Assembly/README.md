@@ -77,7 +77,8 @@ Sense bank (first chip only):
   bank, separate EN lines.
 - [ ] Flash Microcontroller
 - [ ] Connect wires between MUXs and scan as golden sample
-- [ ] Return to test screen to then test same wire and confirm it passes and is displayed:[Pass evidence](Workflow/images/IMG_8664.MOV)
+- [ ] Return to test screen to then test same wire and confirm it passes and is displayed:[Pass evidence](https://github.com/Hberrill4/uav-harness-tester/blob/main/Workflow/images/IMG_8664.MOV)
+)
 - [ ] Disconnect one wire and switch two wires around to confirm open and crossed wire fault detection:[Fail evidence](Workflow/images/IMG_8665.MOV)
 
 
