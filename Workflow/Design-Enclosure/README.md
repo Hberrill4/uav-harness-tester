@@ -4,8 +4,6 @@
 
 A note before you start: OnShape's toolbar occasionally shifts icon positions between updates. Everything below reflects the standard, current toolset — if an icon isn't exactly where described, hover over the toolbar for tooltips, or use the search (magnifying glass icon, top toolbar) and type the tool name.
 
-Also worth remembering: on OnShape's free tier, documents are public by default. Since this is Greenjets IP, consider whether that's acceptable before you build much further into it.
-
 ---
 
 ## Before You Start: Measurements Checklist
