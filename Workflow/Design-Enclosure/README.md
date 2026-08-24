@@ -12,9 +12,9 @@ Fill in the placeholders before you get deep into modeling — you'll need most 
 
 | Item | Value | Status |
 |---|---|---|
-| Main PCB length | `[PCB_LENGTH]` mm | **Measure from your KiCad board outline** |
-| Main PCB width | `[PCB_WIDTH]` mm | **Measure from your KiCad board outline** |
-| Main PCB mounting hole positions (X,Y from corner) | `[PCB_HOLE_1]`, `[PCB_HOLE_2]`, etc. | **Pull from KiCad** |
+| Main PCB length | 5905.5 mm | measured from kiCAD |
+| Main PCB width | 10236.2 mm | measured from kiCAD |
+| Main PCB mounting hole positions (X,Y from corner) | 236.2 mm | measured from kiCAD |
 | Tallest component stack height (ESP32-S3 DevKit + header socket) | `[STACK_HEIGHT]` mm | **Measure physical stack** |
 | Wall thickness | 2.5 mm | Suggested default — adjust if you want |
 | Standoff height (PCB to floor) | 5.5 mm | Suggested default |
