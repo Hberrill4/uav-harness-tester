@@ -23,7 +23,7 @@ Fill in the placeholders before you get deep into modeling — you'll need most 
 | D-sub shell cutout size | Use imported STEP bounding box | Don't hand-measure — see Section 5 |
 | Screen mounting hole spacing | 57.2 × 74.9 mm | Confirmed (Adafruit) |
 | Screen PCB thickness | 1.6 mm (bare) / 7.9 mm (full stack) | Confirmed (Adafruit/RS) |
-| Screen active area | `[SCREEN_ACTIVE_W]` × `[SCREEN_ACTIVE_H]` mm | **Measure your physical unit** |
+| Screen active area | 69 x 51 mm | Measured physical screen |
 | Button cutout diameter | 30 mm | Confirmed (Sanwa) |
 | Wall thickness at button | 2.0–3.7 mm | Confirmed — must match your global wall thickness or get a local pad |
 
