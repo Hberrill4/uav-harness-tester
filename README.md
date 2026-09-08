@@ -9,7 +9,7 @@ A custom PCB: [PCB](Workflow/Project-files/WireHarnessTesterPCB.zip) , [PCB sche
 and custom Enclosures:
 [Main tray](Workflow/Project-files/Final_Tray.stl) ,
 [Main lid](Workflow/Project-files/Final_Lid.stl) , 
-[Test pod tray](Workflow/Project-files/Box%20for%20test%20pod%20v2.stl)
+[Test pod tray](Workflow/Project-files/Box%20for%20test%20pod%20v2.stl) , 
 [Test pod lid](Workflow/Project-files/lid%20new.stl)
 
 was designed made for this project
