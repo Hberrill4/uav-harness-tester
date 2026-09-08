@@ -27,3 +27,7 @@ Fill in the placeholders before you get deep into modeling — you'll need most 
 | Button cutout diameter | 30 mm | Confirmed (Sanwa) |
 | Wall thickness at button | 2.0–3.7 mm | Confirmed — must match your global wall thickness or get a local pad |
 
+
+Lip for screen
+screw consideration
+lid allignement
