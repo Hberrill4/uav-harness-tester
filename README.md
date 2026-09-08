@@ -4,11 +4,11 @@ ESP32-based automated continuity tester for a 64-wire UAV wiring harness.
 Detects open circuits, shorts, and wire mismatches, and reports the exact
 wire location of each fault. 
 
-A custom PCB: [PCB].(Workflow/Project-files/WireHarnessTesterPCB.zip)
+A custom PCB: [PCB](Workflow/Project-files/WireHarnessTesterPCB.zip)
 
 and custom Enclosures:
-[Main tray].(Workflow/Project-files/Final%20tray.stl)
-[Main lid].(Workflow/Project-files/Final%20lid.stl)
+[Main tray](Workflow/Project-files/Final_Tray.stl)
+[Main lid](Workflow/Project-files/Final_Lid.stl)
 [Test pod tray].(
 [Test pod lid].(
 
