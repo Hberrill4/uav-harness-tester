@@ -7,8 +7,8 @@ wire location of each fault.
 A custom PCB: [PCB](Workflow/Project-files/WireHarnessTesterPCB.zip)
 
 and custom Enclosures:
-[Main tray](Workflow/Project-files/Final_Tray.stl)
-[Main lid](Workflow/Project-files/Final_Lid.stl)
+[Main tray](Workflow/Project-files/Final_Tray.stl) ,
+[Main lid](Workflow/Project-files/Final_Lid.stl) , 
 [Test pod tray].(
 [Test pod lid].(
 
